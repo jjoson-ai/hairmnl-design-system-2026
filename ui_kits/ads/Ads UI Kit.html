@@ -217,10 +217,10 @@ function App(){
       </DCSection>
 
       <DCSection id="meta" title="Meta — Instagram &amp; Facebook" subtitle="Paid feed and story placements">
-        <DCArtboard id="mq1" label="Square · quiz acquisition" width={560} height={560} native={{w:1080,h:1080}}><MetaSquare/></DCArtboard>
-        <DCArtboard id="mq2" label="Square · brand awareness" width={560} height={560} native={{w:1080,h:1080}}><MetaSquareB/></DCArtboard>
-        <DCArtboard id="ms1" label="Story · sale push" width={360} height={640} native={{w:1080,h:1920}}><MetaStory/></DCArtboard>
-        <DCArtboard id="ms2" label="Story · quiz acquisition" width={360} height={640} native={{w:1080,h:1920}}><MetaStoryB/></DCArtboard>
+        <DCArtboard id="mq1" label="Square · quiz acquisition" width={1080} height={1080}><MetaSquare/></DCArtboard>
+        <DCArtboard id="mq2" label="Square · brand awareness" width={1080} height={1080}><MetaSquareB/></DCArtboard>
+        <DCArtboard id="ms1" label="Story · sale push" width={540} height={960} native={{w:1080,h:1920}}><MetaStory/></DCArtboard>
+        <DCArtboard id="ms2" label="Story · quiz acquisition" width={540} height={960} native={{w:1080,h:1920}}><MetaStoryB/></DCArtboard>
       </DCSection>
 
       <DCSection id="search" title="Google search ad" subtitle="Responsive text · for reference">
@@ -228,12 +228,12 @@ function App(){
       </DCSection>
 
       <DCSection id="rules" title="Ads rules of thumb" subtitle="What keeps paid media looking like editorial, not like a clearance sale">
-        <DCPostIt x={0} y={0} width={230}>One idea per ad. A product, a promo, or a quiz — never two.</DCPostIt>
-        <DCPostIt x={260} y={0} width={230}>Serif italic is reserved for one phrase per ad. No exceptions, even on display sizes where every letter counts.</DCPostIt>
-        <DCPostIt x={520} y={0} width={230}>Wordmark bottom-right on display. Seal never goes on an ad that is below 300 px wide — becomes a blob.</DCPostIt>
-        <DCPostIt x={0} y={130} width={230}>No discount % larger than the headline type. The brand always leads; the deal supports.</DCPostIt>
-        <DCPostIt x={260} y={130} width={230}>Emoji allowed in paid social captions, never in the asset itself.</DCPostIt>
-        <DCPostIt x={520} y={130} width={230}>Always test at 50% scale. If it doesn't read on mobile, it doesn't ship.</DCPostIt>
+        <DCPostIt x={36}  y={12}  width={230} rotate={-2.8}>One idea per ad. A product, a promo, or a quiz — never two.</DCPostIt>
+        <DCPostIt x={302} y={34}  width={230} rotate={1.6}>Serif italic is reserved for one phrase per ad. No exceptions, even on display sizes where every letter counts.</DCPostIt>
+        <DCPostIt x={572} y={4}   width={230} rotate={-1.2}>Wordmark bottom-right on display. Seal never goes on an ad that is below 300 px wide — becomes a blob.</DCPostIt>
+        <DCPostIt x={14}  y={182} width={230} rotate={2.4}>No discount % larger than the headline type. The brand always leads; the deal supports.</DCPostIt>
+        <DCPostIt x={286} y={214} width={230} rotate={-3.1}>Emoji allowed in paid social captions, never in the asset itself.</DCPostIt>
+        <DCPostIt x={556} y={176} width={230} rotate={1.8}>Always test at 50% scale. If it doesn't read on mobile, it doesn't ship.</DCPostIt>
       </DCSection>
     </DesignCanvas>
   );

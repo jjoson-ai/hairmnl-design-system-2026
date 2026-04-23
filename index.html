@@ -198,7 +198,7 @@ async function render(key){
     // Build placeholder shells first so layout is stable while content streams in.
     const shells = cfg.cards.map(path => {
       const host = document.createElement('div');
-      host.style.cssText = 'width:100%;max-width:1000px;align-self:center;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);min-height:180px;';
+      host.style.cssText = 'width:100%;max-width:1000px;align-self:center;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);min-height:180px;overflow:hidden;position:relative;';
       host.attachShadow({mode:'open'});
       wrap.appendChild(host);
       return { host, path };

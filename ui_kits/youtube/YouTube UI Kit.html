@@ -247,34 +247,34 @@ function App(){
   return (
     <DesignCanvas>
       <DCSection id="banner" title="Channel banner" subtitle="2560 × 1440 with 1546 × 423 safe area · works on mobile, tablet, TV">
-        <DCArtboard id="b1" label="Banner" width={1280} height={720} native={{w:2560,h:1440}}><Banner/></DCArtboard>
+        <DCArtboard id="b1" label="Banner" width={1706} height={960} native={{w:2560,h:1440}}><Banner/></DCArtboard>
       </DCSection>
 
       <DCSection id="thumbs" title="Thumbnail templates" subtitle="1280 × 720 · five shows across the editorial ladder">
-        <DCArtboard id="t1" label="Routine" width={640} height={360} native={{w:1280,h:720}}><Thumb_Routine/></DCArtboard>
-        <DCArtboard id="t2" label="Tutorial" width={640} height={360} native={{w:1280,h:720}}><Thumb_Tutorial/></DCArtboard>
-        <DCArtboard id="t3" label="Review" width={640} height={360} native={{w:1280,h:720}}><Thumb_Review/></DCArtboard>
-        <DCArtboard id="t4" label="Collab" width={640} height={360} native={{w:1280,h:720}}><Thumb_Collab/></DCArtboard>
-        <DCArtboard id="t5" label="GRWM" width={640} height={360} native={{w:1280,h:720}}><Thumb_GRWM/></DCArtboard>
+        <DCArtboard id="t1" label="Routine" width={1280} height={720}><Thumb_Routine/></DCArtboard>
+        <DCArtboard id="t2" label="Tutorial" width={1280} height={720}><Thumb_Tutorial/></DCArtboard>
+        <DCArtboard id="t3" label="Review" width={1280} height={720}><Thumb_Review/></DCArtboard>
+        <DCArtboard id="t4" label="Collab" width={1280} height={720}><Thumb_Collab/></DCArtboard>
+        <DCArtboard id="t5" label="GRWM" width={1280} height={720}><Thumb_GRWM/></DCArtboard>
       </DCSection>
 
       <DCSection id="l3" title="Lower-thirds" subtitle="1920 × 1080 video frames — nametags, product callouts, chapter markers">
-        <DCArtboard id="l1" label="Name" width={720} height={405} native={{w:1920,h:1080}}><L3_Name/></DCArtboard>
-        <DCArtboard id="l2" label="Product" width={720} height={405} native={{w:1920,h:1080}}><L3_Product/></DCArtboard>
-        <DCArtboard id="l3c" label="Chapter marker" width={720} height={405} native={{w:1920,h:1080}}><L3_Chapter/></DCArtboard>
+        <DCArtboard id="l1" label="Name" width={1280} height={720} native={{w:1920,h:1080}}><L3_Name/></DCArtboard>
+        <DCArtboard id="l2" label="Product" width={1280} height={720} native={{w:1920,h:1080}}><L3_Product/></DCArtboard>
+        <DCArtboard id="l3c" label="Chapter marker" width={1280} height={720} native={{w:1920,h:1080}}><L3_Chapter/></DCArtboard>
       </DCSection>
 
       <DCSection id="end" title="End-card" subtitle="1920 × 1080 · last 20 seconds of every video">
-        <DCArtboard id="e1" label="Subscribe + next" width={960} height={540} native={{w:1920,h:1080}}><EndCard/></DCArtboard>
+        <DCArtboard id="e1" label="Subscribe + next" width={1440} height={810} native={{w:1920,h:1080}}><EndCard/></DCArtboard>
       </DCSection>
 
       <DCSection id="rules" title="Thumbnail rules" subtitle="What keeps a HairMNL thumbnail looking like HairMNL">
-        <DCPostIt x={0} y={0} width={230}>One show format → one chip colour (routine: ink, tutorial: honey, review: honey on ink, collab: ink). Never mix.</DCPostIt>
-        <DCPostIt x={260} y={0} width={230}>Display sans + serif italic pair. One italic word max, pulled from the title's most emotional beat.</DCPostIt>
-        <DCPostIt x={520} y={0} width={230}>Seal corner-bottom-right always. Round disc, never square. It's the channel's signature.</DCPostIt>
-        <DCPostIt x={0} y={130} width={230}>Faces are welcome but not required. Editorial gradients + single-letter product stand-ins are the fallback — never use stock.</DCPostIt>
-        <DCPostIt x={260} y={130} width={230}>Emojis never in thumbnail text. Okay in video title below.</DCPostIt>
-        <DCPostIt x={520} y={130} width={230}>Every thumb should still read at 246 × 138. Test it shrunk before you ship.</DCPostIt>
+        <DCPostIt x={24}  y={8}   width={230} rotate={-3.2}>One show format → one chip colour (routine: ink, tutorial: honey, review: honey on ink, collab: ink). Never mix.</DCPostIt>
+        <DCPostIt x={298} y={28}  width={230} rotate={1.8}>Display sans + serif italic pair. One italic word max, pulled from the title's most emotional beat.</DCPostIt>
+        <DCPostIt x={566} y={0}   width={230} rotate={-1.4}>Seal corner-bottom-right always. Round disc, never square. It's the channel's signature.</DCPostIt>
+        <DCPostIt x={56}  y={196} width={230} rotate={2.6}>Faces are welcome but not required. Editorial gradients + single-letter product stand-ins are the fallback — never use stock.</DCPostIt>
+        <DCPostIt x={314} y={172} width={230} rotate={-2.3}>Emojis never in thumbnail text. Okay in video title below.</DCPostIt>
+        <DCPostIt x={588} y={206} width={230} rotate={1.1}>Every thumb should still read at 246 × 138. Test it shrunk before you ship.</DCPostIt>
       </DCSection>
     </DesignCanvas>
   );
