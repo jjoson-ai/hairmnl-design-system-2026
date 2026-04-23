@@ -1,0 +1,109 @@
+/* ============================================================
+   HairMNL — 2026 addendum to colors_and_type.css
+   Adds: responsive breakpoints, dark-on-ink surface tokens,
+   semantic status colours, focus ring, tap-target guarantees.
+   Import AFTER colors_and_type.css.
+   ============================================================ */
+
+:root {
+  /* --- Breakpoints (for max-width/min-width media queries) - */
+  --bp-sm: 480px;   /* phones */
+  --bp-md: 768px;   /* large phones / small tablets */
+  --bp-lg: 1024px;  /* tablets / laptops */
+  --bp-xl: 1280px;  /* desktop */
+  --bp-2xl: 1536px; /* wide desktop */
+
+  /* --- Page gutters at each breakpoint -------------------- */
+  --gutter-sm: 20px;
+  --gutter-md: 40px;
+  --gutter-lg: 80px;
+  --gutter-xl: 120px;
+
+  /* --- Dark-ink surface (for ink backgrounds, video bumpers,
+         email dark mode, dark-variant ads) ----------------- */
+  --ink-surface:        #1A1A1A;
+  --ink-surface-raised: #242220;
+  --ink-surface-sunken: #121110;
+  --ink-hairline:       rgba(250,246,242,0.10);
+  --ink-hairline-strong:rgba(250,246,242,0.22);
+  --on-ink:             #FAF6F2; /* primary text on ink */
+  --on-ink-soft:        rgba(250,246,242,0.78);
+  --on-ink-muted:       rgba(250,246,242,0.58);
+  --on-ink-subtle:      rgba(250,246,242,0.38);
+
+  /* --- Semantic status (2026 addition) -------------------- */
+  --status-success-bg: #E3EADF;
+  --status-success-fg: #3E5A3A;
+  --status-warning-bg: #F5E6CD;
+  --status-warning-fg: #7A5A22;
+  --status-danger-bg:  #EED7D2;
+  --status-danger-fg:  #7A3026;
+  --status-info-bg:    #DDE4EE;
+  --status-info-fg:    #2F4A6E;
+  --status-sale-bg:    #AC604F;   /* terracotta, used sparingly */
+  --status-sale-fg:    #FAF6F2;
+
+  /* --- Focus ring --------------------------------------- */
+  --focus-ring: 0 0 0 2px var(--hm-paper), 0 0 0 4px var(--hm-ink);
+  --focus-ring-on-ink: 0 0 0 2px var(--hm-ink), 0 0 0 4px var(--hm-paper);
+
+  /* --- Tap targets ------------------------------------- */
+  --tap-min: 44px;
+
+  /* --- Z-layers ---------------------------------------- */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-dropdown: 20;
+  --z-drawer: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --z-top: 60;
+}
+
+/* ——— Focus-visible is non-negotiable ——— */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 2px;
+}
+.on-ink *:focus-visible { box-shadow: var(--focus-ring-on-ink); }
+
+/* ——— Minimum tap size helper ——— */
+.tap-target {
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+}
+
+/* ——— Dark-on-ink surface scope ——— */
+.on-ink {
+  background: var(--ink-surface);
+  color: var(--on-ink);
+}
+.on-ink .eyebrow,
+.on-ink .label,
+.on-ink h1, .on-ink h2, .on-ink h3,
+.on-ink h4, .on-ink h5, .on-ink h6 { color: var(--on-ink); }
+.on-ink p, .on-ink .p { color: var(--on-ink-soft); }
+.on-ink .meta, .on-ink small { color: var(--on-ink-muted); }
+.on-ink hr { border-top-color: var(--ink-hairline); }
+
+/* ——— Responsive type scale ——— */
+@media (max-width: 768px) {
+  h1 { font-size: clamp(32px, 9vw, 52px); }
+  h2 { font-size: clamp(26px, 7vw, 40px); }
+  h3 { font-size: clamp(22px, 5.5vw, 30px); }
+  h4 { font-size: 22px; }
+  .h-display--xl { font-size: clamp(44px, 13vw, 72px); }
+}
+
+/* ——— Utility containers ——— */
+.container {
+  width: 100%;
+  max-width: var(--bp-xl);
+  margin: 0 auto;
+  padding: 0 var(--gutter-lg);
+  box-sizing: border-box;
+}
+@media (max-width: 1024px) { .container { padding: 0 var(--gutter-md); } }
+@media (max-width: 480px)  { .container { padding: 0 var(--gutter-sm); } }

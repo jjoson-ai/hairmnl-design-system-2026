@@ -1,0 +1,141 @@
+/* ============================================================
+   HairMNL — Motion primitives
+   2026 addendum. Import after colors_and_type.css.
+   All motion respects prefers-reduced-motion.
+   ============================================================ */
+
+:root {
+  /* Durations (ms) */
+  --dur-instant: 80ms;
+  --dur-fast:    140ms;
+  --dur-med:     220ms;
+  --dur-slow:    420ms;
+  --dur-page:    520ms;
+
+  /* Easings — "composed" feel, no overshoot */
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-emphasis: cubic-bezier(0.32, 0, 0.12, 1);
+  --ease-in:       cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:      cubic-bezier(0, 0, 0.2, 1);
+
+  /* Motion distance tokens */
+  --rise-sm: 4px;
+  --rise-md: 8px;
+  --rise-lg: 16px;
+}
+
+/* ——— Hover rise (images, cards) ——— */
+.motion-rise {
+  transition: transform var(--dur-med) var(--ease-standard),
+              box-shadow var(--dur-med) var(--ease-standard);
+  will-change: transform;
+}
+.motion-rise:hover { transform: translateY(calc(-1 * var(--rise-md))); }
+
+/* ——— Link underline wipe ——— */
+.motion-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 2px;
+}
+.motion-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right center;
+  transform: scaleX(1);
+  transition: transform var(--dur-med) var(--ease-standard);
+}
+.motion-link:hover::after {
+  transform-origin: left center;
+  transform: scaleX(1);
+}
+
+/* ——— Scroll reveal (IntersectionObserver target class) ——— */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--dur-slow) var(--ease-standard),
+              transform var(--dur-slow) var(--ease-standard);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered variants */
+.reveal-1 { transition-delay: 60ms; }
+.reveal-2 { transition-delay: 120ms; }
+.reveal-3 { transition-delay: 180ms; }
+.reveal-4 { transition-delay: 240ms; }
+
+/* ——— Skeleton shimmer ——— */
+@keyframes hm-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(26,26,26,0.04) 0%,
+    rgba(26,26,26,0.08) 50%,
+    rgba(26,26,26,0.04) 100%);
+  background-size: 200% 100%;
+  animation: hm-shimmer 1400ms linear infinite;
+  color: transparent;
+  border-radius: 2px;
+}
+
+/* ——— Gentle pulse (notification dot, live badge) ——— */
+@keyframes hm-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(0.92); }
+}
+.pulse { animation: hm-pulse 1800ms var(--ease-standard) infinite; }
+
+/* ——— Page transitions ——— */
+.page-enter {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: hm-page-enter var(--dur-page) var(--ease-emphasis) forwards;
+}
+@keyframes hm-page-enter {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ——— Toast slide-up ——— */
+@keyframes hm-toast-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.toast-in { animation: hm-toast-in var(--dur-med) var(--ease-standard) both; }
+
+/* ——— Modal fade ——— */
+@keyframes hm-modal-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.modal-in { animation: hm-modal-in var(--dur-med) var(--ease-standard) both; }
+
+/* ——— Drawer slide (from right) ——— */
+@keyframes hm-drawer-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+.drawer-in { animation: hm-drawer-in var(--dur-page) var(--ease-emphasis) both; }
+
+/* ——— Reduced motion ——— */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .skeleton { animation: none; }
+  .pulse { animation: none; }
+}

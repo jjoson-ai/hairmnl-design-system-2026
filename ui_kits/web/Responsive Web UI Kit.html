@@ -1,0 +1,313 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><title>HairMNL · Responsive Web UI Kit</title>
+<template id="__bundler_thumbnail" data-bg-color="#DED5CD">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect x="200" y="120" width="260" height="560" rx="6" fill="#FAF6F2" stroke="#1A1A1A" stroke-width="2"/>
+    <rect x="220" y="160" width="220" height="240" fill="#E7D8C3"/>
+    <rect x="220" y="420" width="220" height="14" fill="#1A1A1A"/>
+    <rect x="220" y="446" width="140" height="10" fill="#1A1A1A" opacity=".4"/>
+    <rect x="220" y="620" width="220" height="36" fill="#1A1A1A"/>
+    <rect x="520" y="120" width="560" height="560" rx="6" fill="#FAF6F2" stroke="#1A1A1A" stroke-width="2"/>
+    <rect x="540" y="160" width="260" height="280" fill="#F3EBE6"/>
+    <rect x="820" y="160" width="240" height="280" fill="#C9B9A8"/>
+    <rect x="540" y="460" width="520" height="16" fill="#1A1A1A"/>
+    <rect x="540" y="490" width="340" height="12" fill="#1A1A1A" opacity=".4"/>
+    <text x="600" y="730" font-family="serif" font-size="28" fill="#1A1A1A">HairMNL · Responsive Web UI Kit</text>
+  </svg>
+</template>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="../../responsive_and_a11y.css">
+<link rel="stylesheet" href="../../motion.css">
+<style>
+html,body{margin:0;padding:0;background:#DED5CD;color:var(--hm-ink);font-family:var(--font-sans);}
+body{padding:40px 24px 80px;}
+.legend{max-width:1000px;margin:0 auto 40px;}
+.legend .kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:8px;}
+.legend h1{font-family:var(--font-display);font-size:48px;font-weight:400;letter-spacing:-.015em;margin:0 0 12px;}
+.legend p{max-width:640px;color:var(--hm-ink-soft);font-size:15px;line-height:1.55;}
+
+.row{display:grid;grid-template-columns:390px 820px;gap:32px;justify-content:center;align-items:start;margin:0 auto 40px;max-width:1300px;}
+.row.single{grid-template-columns:420px;}
+
+.frame{background:#FAF6F2;border:1px solid rgba(26,26,26,.1);overflow:hidden;box-shadow:0 8px 28px rgba(26,26,26,.06);width:100%;position:relative;}
+.label{display:flex;justify-content:space-between;align-items:baseline;max-width:1300px;margin:0 auto 10px;padding:0 12px;}
+.label .n{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+.label .w{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--hm-ink-muted);}
+
+/* ====== MOBILE 390 ====== */
+.m-ann{background:#E7D8C3;text-align:center;padding:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--hm-ink);}
+.m-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#FAF6F2;border-bottom:1px solid rgba(26,26,26,.08);}
+.m-nav svg{width:22px;height:22px;stroke:var(--hm-ink);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;}
+.m-nav .logo img{height:20px;}
+.m-nav .ic{display:flex;gap:14px;}
+
+.m-hero{background:#F3EBE6;padding:32px 24px 28px;position:relative;overflow:hidden;}
+.m-hero .eb{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:14px;}
+.m-hero h1{font-family:var(--font-display);font-weight:400;font-size:44px;line-height:1;letter-spacing:-.02em;margin:0 0 14px;}
+.m-hero p{font-size:13.5px;line-height:1.55;color:var(--hm-ink-soft);margin:0 0 22px;}
+.m-hero .img{aspect-ratio:4/5;background:linear-gradient(135deg,#C9B9A8 0%,#E7D8C3 60%,#EFE6E3 100%);position:relative;margin-bottom:22px;overflow:hidden;}
+.m-hero .img::after{content:"";position:absolute;inset:0;background:url('../../assets/patterns/hair_strands.png') center/cover;opacity:.18;mix-blend-mode:multiply;}
+.m-hero .img .cap{position:absolute;left:14px;top:14px;font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(26,26,26,.6);}
+.m-btn{display:block;text-align:center;font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:15px;border:1px solid var(--hm-ink);color:var(--hm-ink);background:transparent;margin-bottom:10px;text-decoration:none;}
+.m-btn.solid{background:var(--hm-ink);color:#fff;}
+
+.m-strip{padding:28px 20px;background:#FAF6F2;border-top:1px solid rgba(26,26,26,.08);}
+.m-strip .eb{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:4px;}
+.m-strip h3{font-family:var(--font-display);font-weight:400;font-size:26px;letter-spacing:-.015em;margin:0 0 18px;}
+.m-seals{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;}
+.m-seals::-webkit-scrollbar{display:none;}
+.m-seals .c{flex:0 0 auto;width:86px;text-align:center;scroll-snap-align:start;}
+.m-seals .c img{width:100%;max-width:70px;margin-bottom:6px;}
+.m-seals .c .l{font-family:var(--font-sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--hm-ink-soft);}
+
+.m-products{padding:28px 20px;background:#FAF6F2;border-top:1px solid rgba(26,26,26,.08);}
+.m-products h3{font-family:var(--font-display);font-size:26px;margin:0 0 16px;font-weight:400;letter-spacing:-.015em;}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.m-pc{background:#fff;border:1px solid rgba(26,26,26,.08);padding:12px;text-align:center;position:relative;}
+.m-pc .img{aspect-ratio:1;background:var(--hm-blush);margin-bottom:10px;display:flex;align-items:center;justify-content:center;}
+.m-pc .img span{font-family:var(--font-display);font-size:34px;color:rgba(26,26,26,.15);}
+.m-pc .b{font-family:var(--font-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:4px;}
+.m-pc .t{font-family:var(--font-display);font-size:13px;line-height:1.15;margin:0 0 8px;min-height:30px;}
+.m-pc .p{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;}
+
+.m-tab{position:absolute;inset:auto 0 0 0;background:#FAF6F2;border-top:1px solid rgba(26,26,26,.1);padding:8px 4px 14px;display:grid;grid-template-columns:repeat(5,1fr);}
+.m-tab .t{display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--font-sans);font-weight:500;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--hm-ink-muted);padding:6px 0;}
+.m-tab .t.on{color:var(--hm-ink);}
+.m-tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ====== TABLET 820 ====== */
+.t-frame{width:100%;}
+.t-nav{display:grid;grid-template-columns:160px 1fr 160px;padding:14px 28px;border-bottom:1px solid rgba(26,26,26,.08);background:#FAF6F2;align-items:center;gap:16px;}
+.t-nav .logo img{height:22px;}
+.t-nav .links{display:flex;justify-content:center;gap:22px;font-family:var(--font-sans);font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;}
+.t-nav .util{display:flex;justify-content:flex-end;gap:10px;}
+.t-nav svg{width:20px;height:20px;stroke:var(--hm-ink);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;}
+
+.t-hero{display:grid;grid-template-columns:1fr 1fr;min-height:380px;}
+.t-hero .copy{padding:44px 40px;display:flex;flex-direction:column;justify-content:center;background:#F3EBE6;}
+.t-hero .eb{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:14px;}
+.t-hero h2{font-family:var(--font-display);font-weight:400;font-size:52px;line-height:1;letter-spacing:-.02em;margin:0 0 14px;}
+.t-hero p{font-size:14px;line-height:1.6;color:var(--hm-ink-soft);margin:0 0 22px;max-width:360px;}
+.t-hero .pic{background:linear-gradient(135deg,#C9B9A8 0%,#E7D8C3 60%,#EFE6E3 100%);position:relative;overflow:hidden;}
+.t-hero .pic::after{content:"";position:absolute;inset:0;background:url('../../assets/patterns/hair_strands.png') center/cover;opacity:.18;mix-blend-mode:multiply;}
+.t-hero .pic .cap{position:absolute;left:20px;top:20px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(26,26,26,.55);}
+.t-hero .pic .stamp{position:absolute;right:20px;bottom:20px;width:72px;}
+.t-hero .pic .stamp img{width:100%;}
+.btn{display:inline-block;font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;background:transparent;color:var(--hm-ink);border:1px solid var(--hm-ink);text-decoration:none;}
+.btn.solid{background:var(--hm-ink);color:#fff;}
+
+.t-strip{padding:36px 40px;background:#FAF6F2;border-top:1px solid rgba(26,26,26,.08);}
+.t-strip .eb{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:6px;}
+.t-strip h3{font-family:var(--font-display);font-weight:400;font-size:30px;letter-spacing:-.015em;margin:0 0 20px;}
+.t-seals{display:grid;grid-template-columns:repeat(7,1fr);gap:14px;}
+.t-seals .c{text-align:center;}
+.t-seals .c img{width:100%;max-width:78px;margin-bottom:8px;}
+.t-seals .c .l{font-family:var(--font-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--hm-ink-soft);}
+
+.t-products{padding:36px 40px;background:#FAF6F2;border-top:1px solid rgba(26,26,26,.08);}
+.t-products h3{font-family:var(--font-display);font-size:30px;margin:0 0 16px;font-weight:400;letter-spacing:-.015em;}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.t-pc{background:#fff;border:1px solid rgba(26,26,26,.08);padding:14px;text-align:center;position:relative;}
+.t-pc .img{aspect-ratio:1;background:var(--hm-blush);margin-bottom:12px;display:flex;align-items:center;justify-content:center;}
+.t-pc .img span{font-family:var(--font-display);font-size:42px;color:rgba(26,26,26,.15);}
+.t-pc .b{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:4px;}
+.t-pc .t{font-family:var(--font-display);font-size:15px;line-height:1.2;margin:0 0 10px;min-height:36px;}
+.t-pc .p{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;}
+.t-pc .r{position:absolute;top:10px;right:10px;width:44px;}
+.t-pc .r img{width:100%;}
+
+/* Mobile PDP  */
+.m-pdp-img{aspect-ratio:1;background:linear-gradient(135deg,#EFE6E3,#F3EBE6);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(26,26,26,.08);position:relative;}
+.m-pdp-img span{font-family:var(--font-display);font-size:78px;color:rgba(26,26,26,.12);}
+.m-pdp-img .dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+.m-pdp-img .dots i{width:5px;height:5px;background:rgba(26,26,26,.22);border-radius:999px;}
+.m-pdp-img .dots i.on{background:var(--hm-ink);}
+.m-pdp-info{padding:24px 20px 24px;}
+.m-pdp-info .b{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:6px;}
+.m-pdp-info h2{font-family:var(--font-display);font-weight:400;font-size:26px;line-height:1.05;letter-spacing:-.015em;margin:0 0 10px;}
+.m-pdp-info .sub{font-size:12.5px;color:var(--hm-ink-soft);margin-bottom:10px;}
+.m-pdp-info .stars{color:var(--hm-honey);letter-spacing:1.5px;font-size:12px;margin-bottom:18px;}
+.m-pdp-info .stars .cnt{color:var(--hm-ink-muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;margin-left:8px;}
+.m-pdp-info .price{font-family:var(--font-mono);font-size:15px;padding-bottom:16px;border-bottom:1px solid rgba(26,26,26,.1);margin-bottom:18px;}
+.m-pdp-info p{font-size:13.5px;line-height:1.6;color:var(--hm-ink-soft);margin:0 0 20px;}
+
+.m-stickycart{position:sticky;bottom:0;background:#FAF6F2;border-top:1px solid rgba(26,26,26,.12);padding:12px 16px 22px;display:flex;gap:10px;}
+.m-stickycart .btn{flex:1;text-align:center;padding:15px 0;}
+
+/* Filter drawer on mobile */
+.m-filters{padding:14px 18px;background:#FAF6F2;display:flex;gap:10px;overflow-x:auto;border-bottom:1px solid rgba(26,26,26,.08);}
+.m-filters::-webkit-scrollbar{display:none;}
+.m-filters .chip{flex:0 0 auto;padding:8px 14px;font-family:var(--font-sans);font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(26,26,26,.2);}
+.m-filters .chip.on{border-color:var(--hm-ink);background:var(--hm-ink);color:#fff;}
+</style>
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><defs><style>symbol{stroke:currentColor;fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}</style></defs>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.2 15.2 4.3 4.3"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12.5a1 1 0 0 1-1 .9H7a1 1 0 0 1-1-.9L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20.5c.9-3.6 3.7-5.5 7-5.5s6.1 1.9 7 5.5"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.4 4.4 0 0 1 12 7.4a4.4 4.4 0 0 1 7.5 3A11.7 11.7 0 0 1 12 20.5Z"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M5.5 5.5 9 9M15 15l3.5 3.5M18.5 5.5 15 9M9 15l-3.5 3.5"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10 12 4l8 6v10h-6v-6h-4v6H4V10Z"/></symbol>
+</svg>
+
+<div class="legend">
+  <div class="kicker">HairMNL · 2026 · Responsive addendum</div>
+  <h1>Same system, three breakpoints.</h1>
+  <p>Mobile (390), tablet (820), desktop (1280). The tokens and typography are identical — spacing halves, nav collapses to a burger, the top-fold hero stacks, and product grids drop from 4 → 3 → 2 columns. The existing desktop kit still governs at ≥1280.</p>
+</div>
+
+<!-- Home: mobile + tablet side-by-side -->
+<div class="label" style="max-width:1300px;"><span class="n">01 · Home</span><span class="w">Mobile 390 · Tablet 820</span></div>
+<div class="row">
+  <div class="frame" data-screen-label="01a Home · Mobile">
+    <div class="m-ann">Free MNL shipping · P 2,000+</div>
+    <div class="m-nav">
+      <svg><use href="#i-menu"/></svg>
+      <div class="logo"><img src="../../assets/logo/horizontal_black.png"></div>
+      <div class="ic"><svg><use href="#i-search"/></svg><svg><use href="#i-bag"/></svg></div>
+    </div>
+    <div class="m-hero">
+      <div class="eb">New arrival · Davines</div>
+      <h1>We speak <em>curl</em>.</h1>
+      <p>Every curl gets a voice — and the power to define itself. A routine built for your pattern, porosity, and Manila humidity.</p>
+      <div class="img"><div class="cap">[ EDITORIAL · NATURAL LIGHT ]</div></div>
+      <a class="m-btn solid">Shop the edit</a>
+      <a class="m-btn">Take the quiz</a>
+    </div>
+
+    <div class="m-strip">
+      <div class="eb">By concern</div>
+      <h3>Treating today?</h3>
+      <div class="m-seals">
+        <div class="c"><img src="../../assets/icons/solutions/hairfall.png"><div class="l">Hairfall</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/damaged.png"><div class="l">Damage</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/frizz.png"><div class="l">Frizz</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/curls.png"><div class="l">Curls</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/colored.png"><div class="l">Colored</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/dandruff.png"><div class="l">Dandruff</div></div>
+      </div>
+    </div>
+
+    <div class="m-products" style="padding-bottom:96px;">
+      <h3>Best sellers.</h3>
+      <div class="m-grid">
+        <div class="m-pc"><div class="img"><span>K</span></div><div class="b">Kérastase</div><div class="t">Résistance Bain</div><div class="p">P 1,800</div></div>
+        <div class="m-pc"><div class="img"><span>D</span></div><div class="b">Davines</div><div class="t">OI All-In-One Milk</div><div class="p">P 1,575</div></div>
+        <div class="m-pc"><div class="img"><span>O</span></div><div class="b">Olaplex</div><div class="t">No. 3 Hair Perfector</div><div class="p">P 1,650</div></div>
+        <div class="m-pc"><div class="img"><span>K</span></div><div class="b">K18</div><div class="t">Leave-In Mask</div><div class="p">P 3,200</div></div>
+      </div>
+    </div>
+
+    <div class="m-tab">
+      <div class="t on"><svg><use href="#i-home"/></svg>Home</div>
+      <div class="t"><svg><use href="#i-search"/></svg>Shop</div>
+      <div class="t"><svg><use href="#i-sparkle"/></svg>Quiz</div>
+      <div class="t"><svg><use href="#i-bag"/></svg>Bag</div>
+      <div class="t"><svg><use href="#i-user"/></svg>You</div>
+    </div>
+  </div>
+
+  <div class="frame t-frame" data-screen-label="01b Home · Tablet">
+    <div class="m-ann">Free shipping within Metro Manila for orders P 2,000 and up</div>
+    <div class="t-nav">
+      <div class="logo"><img src="../../assets/logo/horizontal_black.png"></div>
+      <div class="links"><span>By Issue</span><span>By Type</span><span>By Brand</span><span>Backbar</span><span>Studio</span><span>Journal</span></div>
+      <div class="util"><svg><use href="#i-search"/></svg><svg><use href="#i-user"/></svg><svg><use href="#i-bag"/></svg></div>
+    </div>
+    <div class="t-hero">
+      <div class="copy">
+        <div class="eb">New arrival · Davines</div>
+        <h2>We speak <em>curl</em>.</h2>
+        <p>Every curl gets a voice — and the power to define itself. A curated routine built around your pattern, porosity, and the humid Manila air.</p>
+        <div style="display:flex;gap:10px;"><a class="btn solid">Shop the edit</a><a class="btn">Take the quiz</a></div>
+      </div>
+      <div class="pic">
+        <div class="cap">[ EDITORIAL · NATURAL LIGHT ]</div>
+        <div class="stamp"><img src="../../assets/logo/seal_black.png"></div>
+      </div>
+    </div>
+    <div class="t-strip">
+      <div class="eb">By concern</div>
+      <h3>What are you treating today?</h3>
+      <div class="t-seals">
+        <div class="c"><img src="../../assets/icons/solutions/hairfall.png"><div class="l">Hairfall</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/damaged.png"><div class="l">Damage</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/frizz.png"><div class="l">Frizz</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/curls.png"><div class="l">Curls</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/colored.png"><div class="l">Colored</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/dandruff.png"><div class="l">Dandruff</div></div>
+        <div class="c"><img src="../../assets/icons/solutions/brassiness.png"><div class="l">Brass</div></div>
+      </div>
+    </div>
+    <div class="t-products">
+      <h3>Best sellers this week.</h3>
+      <div class="t-grid">
+        <div class="t-pc"><div class="r"><img src="../../assets/icons/ecom/best_seller.png"></div><div class="img"><span>K</span></div><div class="b">Kérastase</div><div class="t">Résistance Bain Extentioniste</div><div class="p">P 1,800</div></div>
+        <div class="t-pc"><div class="r"><img src="../../assets/icons/ecom/new.png"></div><div class="img"><span>D</span></div><div class="b">Davines</div><div class="t">OI All-In-One Milk 135 ml</div><div class="p">P 1,575</div></div>
+        <div class="t-pc"><div class="img"><span>O</span></div><div class="b">Olaplex</div><div class="t">No. 3 Hair Perfector</div><div class="p">P 1,650</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PDP: mobile + tablet -->
+<div class="label" style="max-width:1300px;"><span class="n">02 · Product detail</span><span class="w">Mobile 390 · Tablet 820</span></div>
+<div class="row">
+  <div class="frame" data-screen-label="02a PDP · Mobile">
+    <div class="m-nav">
+      <svg><use href="#i-menu"/></svg>
+      <div class="logo"><img src="../../assets/logo/horizontal_black.png"></div>
+      <div class="ic"><svg><use href="#i-search"/></svg><svg><use href="#i-bag"/></svg></div>
+    </div>
+    <div class="m-pdp-img"><span>K</span><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
+    <div class="m-pdp-info">
+      <div class="b">Kérastase · Résistance</div>
+      <h2>Bain Extentioniste <em>Length-Strengthening</em> Shampoo</h2>
+      <div class="sub">For weakened mid-lengths to ends · 250 ml</div>
+      <div class="stars">★★★★★<span class="cnt">4.7 · 184 reviews</span></div>
+      <div class="price">P 1,800</div>
+      <p>A cleansing routine formulated with Ciment-Alpha and Creatine R. Strengthens the fibre from root to tip.</p>
+    </div>
+    <div class="m-stickycart">
+      <a class="btn" style="padding:15px 18px;">♡</a>
+      <a class="btn solid" style="flex:1;text-align:center;padding:15px 0;">Add to bag · P 1,800</a>
+    </div>
+  </div>
+
+  <div class="frame t-frame" data-screen-label="02b Category · Tablet">
+    <div class="t-nav">
+      <div class="logo"><img src="../../assets/logo/horizontal_black.png"></div>
+      <div class="links"><span>By Issue</span><span>By Type</span><span>By Brand</span><span>Backbar</span><span>Studio</span><span>Journal</span></div>
+      <div class="util"><svg><use href="#i-search"/></svg><svg><use href="#i-user"/></svg><svg><use href="#i-bag"/></svg></div>
+    </div>
+    <div style="background:#E5DEE7;padding:36px 40px 30px;border-bottom:1px solid rgba(26,26,26,.08);display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px;">
+      <div>
+        <div class="eb" style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:12px;">Home · By Issue · Frizz control</div>
+        <h2 style="font-family:var(--font-display);font-weight:400;font-size:46px;letter-spacing:-.02em;margin:0 0 10px;line-height:1;">Frizz, but make it <em>flow.</em></h2>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--hm-ink-soft);max-width:420px;margin:0;">Humidity isn't the enemy — under-nourished cuticles are. 24 products smooth the lift without flattening the life out of your hair.</p>
+      </div>
+      <img src="../../assets/icons/solutions/frizz.png" style="height:110px;">
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:16px 40px;background:#FAF6F2;border-bottom:1px solid rgba(26,26,26,.08);font-family:var(--font-sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;">
+      <div style="display:flex;gap:18px;"><span style="color:var(--hm-ink);border-bottom:1px solid var(--hm-ink);padding-bottom:4px;">All</span><span style="color:var(--hm-ink-muted);">Shampoo</span><span style="color:var(--hm-ink-muted);">Conditioner</span><span style="color:var(--hm-ink-muted);">Leave-in</span><span style="color:var(--hm-ink-muted);">Styling</span></div>
+      <div>Sort ▾</div>
+    </div>
+    <div class="t-products">
+      <div class="t-grid">
+        <div class="t-pc"><div class="r"><img src="../../assets/icons/ecom/best_seller.png"></div><div class="img"><span>K</span></div><div class="b">Kérastase</div><div class="t">Discipline Bain Fluidealiste</div><div class="p">P 1,825</div></div>
+        <div class="t-pc"><div class="img"><span>D</span></div><div class="b">Davines</div><div class="t">Melu Shampoo for Long Hair</div><div class="p">P 1,350</div></div>
+        <div class="t-pc"><div class="r"><img src="../../assets/icons/ecom/special_offer.png"></div><div class="img"><span>R</span></div><div class="b">Redken</div><div class="t">Frizz Dismiss Mask</div><div class="p">P 2,100</div></div>
+        <div class="t-pc"><div class="img"><span>L</span></div><div class="b">L'Oréal Pro</div><div class="t">Liss Unlimited Serum</div><div class="p">P 1,450</div></div>
+        <div class="t-pc"><div class="img"><span>O</span></div><div class="b">Olaplex</div><div class="t">No. 6 Bond Smoother</div><div class="p">P 1,475</div></div>
+        <div class="t-pc"><div class="r"><img src="../../assets/icons/ecom/new.png"></div><div class="img"><span>M</span></div><div class="b">Moroccanoil</div><div class="t">Frizz Control Spray</div><div class="p">P 1,900</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>

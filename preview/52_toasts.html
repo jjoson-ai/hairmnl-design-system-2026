@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../motion.css">
+<style>
+body{margin:0;padding:24px 28px;background:var(--hm-paper);font-family:var(--font-sans);color:var(--hm-ink);}
+.eyebrow{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink);margin-bottom:16px;}
+.toast{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:#fff;border:1px solid rgba(26,26,26,.12);max-width:420px;margin-bottom:10px;}
+.toast .tick{width:20px;height:20px;border-radius:999px;background:var(--status-success-fg);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.toast .ttl{font-family:var(--font-sans);font-weight:500;font-size:13px;color:var(--hm-ink);letter-spacing:.02em;}
+.toast .meta{font-family:var(--font-sans);font-size:12px;color:var(--hm-ink-muted);margin-top:2px;line-height:1.45;}
+.toast.err .tick{background:var(--status-danger-fg);}
+.toast.info .tick{background:var(--status-info-fg);}
+</style></head><body>
+<div class="eyebrow">Toasts</div>
+<div class="toast toast-in"><div class="tick">✓</div><div><div class="ttl">Added to your bag</div><div class="meta">Kérastase Résistance Bain · 250 ml · P 1,800</div></div></div>
+<div class="toast toast-in err"><div class="tick">!</div><div><div class="ttl">Couldn't apply that code</div><div class="meta">TOUSLED25 has already been used on this order.</div></div></div>
+<div class="toast toast-in info"><div class="tick">i</div><div><div class="ttl">Pick-up ready</div><div class="meta">Order #8134 is waiting for you at the Brixton St. studio.</div></div></div>
+</body></html>

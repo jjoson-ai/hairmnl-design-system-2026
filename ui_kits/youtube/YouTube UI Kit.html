@@ -1,0 +1,284 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><title>HairMNL · YouTube UI Kit</title>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+html,body{margin:0;padding:0;background:#EAE4DA;font-family:var(--font-sans);color:var(--hm-ink);}
+.stage{position:relative;width:100%;height:100%;overflow:hidden;}
+.stage.pad{padding:42px 48px;}
+.bg-paper{background:var(--hm-paper);}
+.bg-ink{background:var(--hm-ink);color:var(--hm-paper);}
+.bg-blush{background:var(--hm-blush);}
+.bg-stone{background:var(--hm-stone);}
+.bg-lilac{background:var(--hm-lilac);}
+.bg-sage{background:var(--hm-sage);}
+
+.grain{position:absolute;inset:0;background:url('../../assets/patterns/hair_strands.png') center/cover;opacity:.16;mix-blend-mode:multiply;pointer-events:none;}
+.eb{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+.eb.paper{color:var(--hm-paper);opacity:.75;}
+.dp{font-family:var(--font-display);font-weight:400;letter-spacing:-.018em;line-height:.98;}
+.si{font-family:var(--font-serif-italic);font-style:italic;font-weight:400;}
+
+.photo{position:relative;overflow:hidden;}
+.photo.warm{background:linear-gradient(135deg,#C9B9A8 0%,#E7D8C3 60%,#EFE6E3 100%);}
+.photo.cool{background:linear-gradient(135deg,#C2B9C6 0%,#DDD3E0 55%,#EAE3ED 100%);}
+.photo.sage{background:linear-gradient(135deg,#9CA99A 0%,#C4CEBF 55%,#DFE3DA 100%);}
+.photo.dusk{background:linear-gradient(135deg,#6C5B52 0%,#A89689 60%,#D4C5B8 100%);}
+.photo .fig{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:150px;color:rgba(26,26,26,.16);}
+
+.chip{display:inline-block;padding:5px 10px;font-family:var(--font-sans);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;}
+.chip.paper{background:var(--hm-paper);color:var(--hm-ink);}
+.chip.ink{background:var(--hm-ink);color:var(--hm-paper);}
+.chip.honey{background:var(--hm-honey);color:var(--hm-ink);}
+
+.corner-seal{position:absolute;bottom:16px;right:16px;width:44px;height:44px;border-radius:50%;background:var(--hm-paper);display:flex;align-items:center;justify-content:center;}
+.corner-seal img{height:62%;}
+.corner-seal.ink{background:var(--hm-ink);}
+.corner-seal.ink img{filter:invert(1);}
+
+/* lower-third */
+.l3{position:absolute;left:5%;right:5%;bottom:6%;}
+.l3 .box{display:inline-block;padding:14px 20px;background:var(--hm-paper);color:var(--hm-ink);}
+.l3 .box .n{font-family:var(--font-display);font-size:28px;line-height:1;letter-spacing:-.015em;}
+.l3 .box .r{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--hm-ink-muted);margin-top:4px;}
+</style>
+</head>
+<body>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<div id="root"></div>
+<script type="text/babel" src="./design-canvas.jsx"></script>
+<script type="text/babel">
+const { DesignCanvas, DCSection, DCArtboard, DCPostIt } = window;
+
+/* ============ CHANNEL BANNER 2560×1440, safe area 1546×423 centered ============ */
+const Banner = () => (
+  <div className="stage bg-paper" style={{position:'relative'}}>
+    {/* desktop outer zone (darker) */}
+    <div style={{position:'absolute', inset:0, background:'linear-gradient(90deg, #EFE6E3 0%, #FAF6F2 25%, #FAF6F2 75%, #EFE6E3 100%)'}}/>
+    {/* safe-area rules */}
+    <div style={{position:'absolute', left:'19.6%', right:'19.6%', top:'35.3%', height:'29.4%', border:'1px dashed rgba(26,26,26,.18)'}}/>
+    {/* content inside safe area */}
+    <div style={{position:'absolute', left:'22%', right:'22%', top:'22%', bottom:'22%', display:'flex', alignItems:'center', gap:'6%'}}>
+      <div style={{width:110, height:110, borderRadius:'50%', background:'var(--hm-ink)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
+        <img src="../../assets/logo/seal_black.png" style={{height:'55%', filter:'invert(1)'}}/>
+      </div>
+      <div style={{flex:1, minWidth:0}}>
+        <div className="eb" style={{color:'var(--hm-ink-muted)', marginBottom:12}}>HairMNL · YouTube</div>
+        <div className="dp" style={{fontSize:54, color:'var(--hm-ink)'}}>Tutorials, routines, and <span className="si">real</span> talk — from Manila's hair editors.</div>
+        <div style={{fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'.1em', color:'var(--hm-ink-muted)', marginTop:14}}>NEW EPISODES EVERY THURSDAY, 6 PM PHT</div>
+      </div>
+    </div>
+    <div style={{position:'absolute', left:'19.6%', top:'33%', fontFamily:'var(--font-mono)', fontSize:9, letterSpacing:'.14em', color:'rgba(26,26,26,.35)'}}>[ SAFE AREA · 1546 × 423 ]</div>
+  </div>
+);
+
+/* ============ THUMBNAIL TEMPLATES · 1280×720 ============ */
+
+const Thumb_Routine = () => (
+  <div className="stage photo warm">
+    <div className="fig">R</div>
+    <div className="grain"/>
+    {/* left overlay slab */}
+    <div style={{position:'absolute', left:0, top:0, bottom:0, width:'52%', background:'linear-gradient(90deg, var(--hm-paper) 75%, transparent)'}}/>
+    <div style={{position:'absolute', left:'5%', top:'12%', right:'52%'}}>
+      <div className="chip ink" style={{marginBottom:14}}>Routine · Ep 04</div>
+      <div className="dp" style={{fontSize:52, color:'var(--hm-ink)'}}>The <span className="si">5-minute</span><br/>curl routine.</div>
+      <div style={{fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.1em', color:'var(--hm-ink-muted)', marginTop:16}}>w/ MARIELLE · EDITOR</div>
+    </div>
+    <div className="corner-seal"><img src="../../assets/logo/seal_black.png"/></div>
+  </div>
+);
+
+const Thumb_Tutorial = () => (
+  <div className="stage photo cool">
+    <div className="fig">T</div>
+    <div className="grain"/>
+    {/* big numeral + question */}
+    <div style={{position:'absolute', left:'5%', top:'10%', right:'48%'}}>
+      <div className="chip honey" style={{marginBottom:12}}>Tutorial</div>
+      <div style={{fontFamily:'var(--font-display)', fontSize:130, color:'var(--hm-ink)', lineHeight:.9, letterSpacing:'-.03em'}}>How to</div>
+      <div className="dp" style={{fontSize:36, color:'var(--hm-ink)', marginTop:10}}><span className="si">air-dry</span><br/>without the frizz.</div>
+    </div>
+    {/* right chevron */}
+    <div style={{position:'absolute', right:'6%', top:'50%', transform:'translateY(-50%)', fontFamily:'var(--font-display)', fontSize:120, color:'var(--hm-paper)', mixBlendMode:'difference'}}>→</div>
+    <div className="corner-seal"><img src="../../assets/logo/seal_black.png"/></div>
+  </div>
+);
+
+const Thumb_Review = () => (
+  <div className="stage bg-ink" style={{padding:'48px 52px'}}>
+    <div style={{display:'grid', gridTemplateColumns:'1fr auto', gap:40, alignItems:'center', height:'100%'}}>
+      <div>
+        <div className="chip honey" style={{marginBottom:14}}>Review</div>
+        <div className="dp" style={{fontSize:58, color:'var(--hm-paper)'}}>Is K18 worth the <span className="si">hype?</span></div>
+        <div style={{display:'flex', gap:14, marginTop:20, alignItems:'center'}}>
+          <div style={{fontFamily:'var(--font-display)', fontSize:44, color:'var(--hm-honey)'}}>4.5 ★</div>
+          <div style={{fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'.12em', color:'rgba(250,246,242,.7)'}}>AFTER 30 DAYS · 8 REVIEWS</div>
+        </div>
+      </div>
+      <div style={{width:200, height:200, background:'linear-gradient(180deg,#EAD7C4,#A69688)', position:'relative', overflow:'hidden'}}>
+        <div className="grain"/>
+        <div style={{fontFamily:'var(--font-display)', fontSize:180, color:'rgba(26,26,26,.15)', lineHeight:1, position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center'}}>K</div>
+      </div>
+    </div>
+    <div className="corner-seal" style={{background:'var(--hm-paper)'}}><img src="../../assets/logo/seal_black.png"/></div>
+  </div>
+);
+
+const Thumb_Collab = () => (
+  <div className="stage photo sage">
+    <div className="fig">C</div>
+    <div className="grain"/>
+    {/* two-person feel via two overlapping circles */}
+    <div style={{position:'absolute', right:'4%', top:'50%', transform:'translateY(-50%)', display:'flex'}}>
+      <div style={{width:180, height:180, borderRadius:'50%', background:'linear-gradient(180deg,#C9B9A8,#7A6E65)', border:'4px solid var(--hm-paper)', marginRight:-40, position:'relative', overflow:'hidden'}}><div className="grain"/><div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--font-display)',fontSize:90,color:'rgba(26,26,26,.2)'}}>A</div></div>
+      <div style={{width:180, height:180, borderRadius:'50%', background:'linear-gradient(180deg,#D4BCA6,#8E7C6E)', border:'4px solid var(--hm-paper)', position:'relative', overflow:'hidden'}}><div className="grain"/><div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--font-display)',fontSize:90,color:'rgba(26,26,26,.2)'}}>J</div></div>
+    </div>
+    <div style={{position:'absolute', left:'5%', top:'12%', right:'45%'}}>
+      <div className="chip ink" style={{marginBottom:14}}>Collab · Ep 11</div>
+      <div className="dp" style={{fontSize:46, color:'var(--hm-ink)'}}>With <span className="si">Anya</span><br/>of Yellow Lab.</div>
+      <div style={{fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'.1em', color:'var(--hm-ink-muted)', marginTop:14}}>WE SWAP ROUTINES · FOR 7 DAYS</div>
+    </div>
+    <div className="corner-seal"><img src="../../assets/logo/seal_black.png"/></div>
+  </div>
+);
+
+const Thumb_GRWM = () => (
+  <div className="stage bg-blush" style={{padding:'40px 44px'}}>
+    <div style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:32, height:'100%', alignItems:'center'}}>
+      <div>
+        <div className="chip ink" style={{marginBottom:12}}>GRWM</div>
+        <div className="dp" style={{fontSize:60, color:'var(--hm-ink)'}}>Get ready with <span className="si">me</span><br/>for <span className="si">brunch</span>.</div>
+        <div style={{fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'.1em', color:'var(--hm-ink-muted)', marginTop:16}}>22 MIN · TALK-Y · HUMIDITY-PROOF</div>
+      </div>
+      <div style={{background:'linear-gradient(135deg,#E7D8C3 0%, #C9B9A8 100%)', position:'relative', overflow:'hidden', height:'100%'}}>
+        <div className="grain"/>
+        <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:170, color:'rgba(26,26,26,.16)'}}>G</div>
+      </div>
+    </div>
+    <div className="corner-seal ink"><img src="../../assets/logo/seal_black.png"/></div>
+  </div>
+);
+
+/* ============ LOWER-THIRDS · 1920×1080 ============ */
+
+const L3_Name = () => (
+  <div className="stage photo dusk">
+    <div className="fig">L</div>
+    <div className="grain"/>
+    <div className="l3">
+      <div className="box">
+        <div className="n"><span className="si">Marielle</span> Cruz</div>
+        <div className="r">Senior editor · HairMNL studio</div>
+      </div>
+    </div>
+  </div>
+);
+
+const L3_Product = () => (
+  <div className="stage photo warm">
+    <div className="fig">P</div>
+    <div className="grain"/>
+    <div className="l3">
+      <div className="box" style={{display:'flex', alignItems:'center', gap:18}}>
+        <div style={{width:56, height:56, background:'#C9B9A8'}}/>
+        <div>
+          <div className="n" style={{fontSize:22}}>Kérastase Résistance Bain</div>
+          <div className="r">250 ml · P 1,800 · shop via link below</div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const L3_Chapter = () => (
+  <div className="stage photo cool">
+    <div className="fig">C</div>
+    <div className="grain"/>
+    <div style={{position:'absolute', left:'5%', right:'5%', top:'6%', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+      <div style={{background:'var(--hm-paper)', padding:'10px 16px', display:'flex', alignItems:'center', gap:12}}>
+        <div style={{fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.14em'}}>CH 02</div>
+        <div style={{width:1, height:14, background:'rgba(26,26,26,.25)'}}/>
+        <div style={{fontFamily:'var(--font-display)', fontSize:18, letterSpacing:'-.01em'}}><span className="si">Washing less,</span> better.</div>
+      </div>
+      <div style={{background:'var(--hm-ink)', color:'var(--hm-paper)', padding:'10px 14px', fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.14em'}}>04:12 / 12:38</div>
+    </div>
+  </div>
+);
+
+/* ============ END-CARD · 1920×1080 ============ */
+
+const EndCard = () => (
+  <div className="stage bg-paper" style={{padding:'40px 48px'}}>
+    <div style={{display:'grid', gridTemplateColumns:'1fr 340px', gap:32, height:'100%'}}>
+      <div style={{display:'flex', flexDirection:'column', justifyContent:'space-between'}}>
+        <div>
+          <div className="eb" style={{color:'var(--hm-ink-muted)', marginBottom:14}}>End card · Subscribe</div>
+          <div className="dp" style={{fontSize:66, color:'var(--hm-ink)'}}>Keep your<br/>routine<br/><span className="si">consistent.</span></div>
+          <div style={{fontSize:14, color:'var(--hm-ink-soft)', lineHeight:1.55, marginTop:18, maxWidth:380}}>Subscribe for weekly tutorials, routine builds, and Manila-tested product reviews.</div>
+        </div>
+        <div style={{display:'flex', alignItems:'center', gap:16}}>
+          <div style={{background:'var(--hm-ink)', color:'var(--hm-paper)', padding:'14px 22px', fontFamily:'var(--font-sans)', fontWeight:500, fontSize:11, letterSpacing:'.2em', textTransform:'uppercase'}}>▶ Subscribe</div>
+          <div style={{fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.12em', color:'var(--hm-ink-muted)'}}>@HAIRMNL · 84K SUBSCRIBERS</div>
+        </div>
+      </div>
+      <div style={{display:'grid', gridTemplateRows:'1fr 1fr', gap:12}}>
+        <div style={{background:'#C9B9A8', position:'relative', overflow:'hidden'}}>
+          <div className="grain"/>
+          <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:80, color:'rgba(26,26,26,.2)'}}>▶</div>
+          <div style={{position:'absolute', left:12, bottom:12, right:12, fontFamily:'var(--font-display)', fontSize:15, color:'var(--hm-paper)', mixBlendMode:'difference'}}>Next: The colour-safe routine</div>
+        </div>
+        <div style={{background:'#A69C93', position:'relative', overflow:'hidden'}}>
+          <div className="grain"/>
+          <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:80, color:'rgba(26,26,26,.2)'}}>▶</div>
+          <div style={{position:'absolute', left:12, bottom:12, right:12, fontFamily:'var(--font-display)', fontSize:15, color:'var(--hm-paper)', mixBlendMode:'difference'}}>Watch again: Humidity 101</div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+function App(){
+  return (
+    <DesignCanvas>
+      <DCSection id="banner" title="Channel banner" subtitle="2560 × 1440 with 1546 × 423 safe area · works on mobile, tablet, TV">
+        <DCArtboard id="b1" label="Banner" width={900} height={506}><Banner/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="thumbs" title="Thumbnail templates" subtitle="1280 × 720 · five shows across the editorial ladder">
+        <DCArtboard id="t1" label="Routine" width={480} height={270}><Thumb_Routine/></DCArtboard>
+        <DCArtboard id="t2" label="Tutorial" width={480} height={270}><Thumb_Tutorial/></DCArtboard>
+        <DCArtboard id="t3" label="Review" width={480} height={270}><Thumb_Review/></DCArtboard>
+        <DCArtboard id="t4" label="Collab" width={480} height={270}><Thumb_Collab/></DCArtboard>
+        <DCArtboard id="t5" label="GRWM" width={480} height={270}><Thumb_GRWM/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="l3" title="Lower-thirds" subtitle="1920 × 1080 video frames — nametags, product callouts, chapter markers">
+        <DCArtboard id="l1" label="Name" width={540} height={304}><L3_Name/></DCArtboard>
+        <DCArtboard id="l2" label="Product" width={540} height={304}><L3_Product/></DCArtboard>
+        <DCArtboard id="l3c" label="Chapter marker" width={540} height={304}><L3_Chapter/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="end" title="End-card" subtitle="1920 × 1080 · last 20 seconds of every video">
+        <DCArtboard id="e1" label="Subscribe + next" width={760} height={428}><EndCard/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="rules" title="Thumbnail rules" subtitle="What keeps a HairMNL thumbnail looking like HairMNL">
+        <DCPostIt x={0} y={0} width={230}>One show format → one chip colour (routine: ink, tutorial: honey, review: honey on ink, collab: ink). Never mix.</DCPostIt>
+        <DCPostIt x={260} y={0} width={230}>Display sans + serif italic pair. One italic word max, pulled from the title's most emotional beat.</DCPostIt>
+        <DCPostIt x={520} y={0} width={230}>Seal corner-bottom-right always. Round disc, never square. It's the channel's signature.</DCPostIt>
+        <DCPostIt x={0} y={130} width={230}>Faces are welcome but not required. Editorial gradients + single-letter product stand-ins are the fallback — never use stock.</DCPostIt>
+        <DCPostIt x={260} y={130} width={230}>Emojis never in thumbnail text. Okay in video title below.</DCPostIt>
+        <DCPostIt x={520} y={130} width={230}>Every thumb should still read at 246 × 138. Test it shrunk before you ship.</DCPostIt>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

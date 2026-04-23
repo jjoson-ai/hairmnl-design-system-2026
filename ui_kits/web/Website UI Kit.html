@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HairMNL · Website UI Kit</title>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html, body { margin:0; padding:0; background:#E7E2DD; color:var(--hm-ink); font-family:var(--font-sans); }
+  body { padding: 48px; }
+  .legend { max-width: 960px; margin: 0 auto 36px; }
+  .legend .kicker { font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:10px;}
+  .legend h1 { font-family:var(--font-display);font-size:52px;font-weight:400;margin:0 0 14px;letter-spacing:-.015em;}
+  .legend p { max-width: 680px; color:var(--hm-ink-soft); font-size:15px; line-height:1.55;}
+
+  .frame-label { max-width:1280px; margin: 40px auto 10px; padding: 0 12px; display:flex; justify-content:space-between; align-items:baseline;}
+  .frame-label .name { font-family:var(--font-sans);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink);}
+  .frame-label .note { font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--hm-ink-muted);}
+
+  .frame { max-width:1280px; margin: 0 auto 32px; background:#FAF6F2; border:1px solid rgba(26,26,26,.1); overflow:hidden; box-shadow: 0 1px 2px rgba(26,26,26,.04), 0 8px 28px rgba(26,26,26,.06); }
+
+  /* Announcement + nav */
+  .annbar { background:#E7D8C3; text-align:center; padding:10px 16px; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--hm-ink);}
+  .nav { display:grid; grid-template-columns: 180px 1fr 180px; align-items:center; padding: 20px 40px; background:#FAF6F2; border-bottom:1px solid var(--color-hairline);}
+  .nav .logo img { height: 28px; }
+  .nav .links { display:flex; gap:28px; justify-content:center;}
+  .nav .links a { font-family:var(--font-sans); font-weight:500; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink); text-decoration:none;}
+  .nav .util { display:flex; gap:18px; justify-content:flex-end; font-family:var(--font-sans); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink);}
+  .nav .util .ic { display:inline-block; width:16px; height:16px; border:1px solid var(--hm-ink); border-radius:2px; vertical-align:-3px; margin-right:6px;}
+  .subnav { display:flex; justify-content:center; gap:22px; padding: 10px 40px; background:#FAF6F2; border-bottom:1px solid var(--color-hairline); font-family:var(--font-sans); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--hm-ink-soft);}
+  .subnav a { color:inherit; text-decoration:none;}
+
+  /* Hero */
+  .hero { display:grid; grid-template-columns: 1fr 1fr; min-height: 520px;}
+  .hero .copy { padding: 80px 80px; display:flex; flex-direction:column; justify-content:center; background:#F3EBE6;}
+  .hero .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink-muted); margin-bottom:18px;}
+  .hero h2 { font-family:var(--font-display); font-size:72px; font-weight:400; line-height:1; letter-spacing:-.02em; color:var(--hm-ink); margin:0 0 22px;}
+  .hero p { font-family:var(--font-sans); font-size:15px; line-height:1.6; color:var(--hm-ink-soft); max-width: 420px; margin:0 0 32px;}
+  .btn { display:inline-block; font-family:var(--font-sans); font-weight:500; font-size:12px; letter-spacing:.18em; text-transform:uppercase; padding:15px 30px; background:transparent; color:var(--hm-ink); border:1px solid var(--hm-ink); text-decoration:none; cursor:pointer;}
+  .btn.solid { background:var(--hm-ink); color:#fff;}
+  .hero .pic { background: linear-gradient(135deg, #C9B9A8 0%, #E7D8C3 60%, #EFE6E3 100%); position:relative; overflow:hidden;}
+  .hero .pic::after { content:""; position:absolute; inset:0; background: url('../../assets/patterns/hair_strands.png') center/cover; opacity:.18; mix-blend-mode: multiply;}
+  .hero .pic .stamp { position:absolute; right: 40px; bottom: 40px; width: 96px; height:96px; opacity:.85;}
+  .hero .pic .stamp img { width:100%; }
+  .hero .pic .photo-note { position:absolute; left: 40px; top: 40px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:rgba(26,26,26,.55);}
+
+  /* By hair issue strip */
+  .strip { padding: 60px 80px; background:#FAF6F2; border-top:1px solid var(--color-hairline);}
+  .strip .head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 32px;}
+  .strip .head .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink-muted);}
+  .strip .head h3 { font-family:var(--font-display); font-size:34px; font-weight:400; letter-spacing:-.015em; margin:0;}
+  .strip .head a { font-family:var(--font-sans); font-weight:500; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink); border-bottom:1px solid var(--hm-ink); padding-bottom:2px; text-decoration:none;}
+  .seal-row { display:grid; grid-template-columns: repeat(7, 1fr); gap: 24px; }
+  .seal-row .cell { text-align:center; }
+  .seal-row .cell img { width: 100%; max-width: 96px; display:block; margin: 0 auto 10px;}
+  .seal-row .cell .l { font-family:var(--font-sans); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--hm-ink-soft);}
+
+  /* Editorial tile pair */
+  .pair { display:grid; grid-template-columns: 1fr 1fr; gap:1px; background: var(--color-hairline); border-top:1px solid var(--color-hairline);}
+  .tile { background:#FAF6F2; padding: 56px 60px; min-height:320px; display:flex; flex-direction:column; justify-content:space-between;}
+  .tile.alt { background:#CAD1D3;}
+  .tile .num { font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; color:var(--hm-ink-muted);}
+  .tile h4 { font-family:var(--font-display); font-size:40px; font-weight:400; letter-spacing:-.01em; line-height:1.05; margin: 18px 0 14px; max-width: 420px;}
+  .tile p { font-family:var(--font-sans); font-size:14px; line-height:1.55; color:var(--hm-ink-soft); max-width: 420px; margin:0 0 28px;}
+  .tile .cta { font-family:var(--font-sans); font-weight:500; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink); border-bottom:1px solid var(--hm-ink); padding-bottom:2px; align-self:flex-start; text-decoration:none;}
+
+  /* Product grid */
+  .grid { padding: 60px 80px; background:#FAF6F2;}
+  .grid .head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 28px;}
+  .grid .head .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink-muted);}
+  .grid .head h3 { font-family:var(--font-display); font-size:34px; font-weight:400; letter-spacing:-.015em; margin: 6px 0 0;}
+  .products { display:grid; grid-template-columns: repeat(4, 1fr); gap: 24px;}
+  .pc { background:#fff; border: 1px solid var(--color-hairline); padding: 18px; text-align:center; position:relative;}
+  .pc .ribbon { position:absolute; top: 12px; right: 12px; width: 56px; height: 56px;}
+  .pc .ribbon img { width:100%;}
+  .pc .img { aspect-ratio: 1; background:var(--hm-blush); margin-bottom: 16px; display:flex; align-items:center; justify-content:center;}
+  .pc .img span { font-family:var(--font-display); font-size:56px; color: rgba(26,26,26,.15);}
+  .pc .brand { font-family:var(--font-mono); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink-muted); margin-bottom: 6px;}
+  .pc .title { font-family:var(--font-display); font-size:16.5px; line-height:1.2; margin: 0 0 12px; min-height: 40px;}
+  .pc .price { font-family:var(--font-mono); font-size:12px; letter-spacing:.06em;}
+
+  /* Footer */
+  .foot { padding: 60px 80px 40px; background:#F3EBE6; display:grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 40px; border-top:1px solid var(--color-hairline);}
+  .foot .seal { width: 96px; margin-bottom: 18px;}
+  .foot h5 { font-family:var(--font-sans); font-weight:700; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink); margin:0 0 14px;}
+  .foot ul { list-style:none; padding:0; margin:0;}
+  .foot li { font-family:var(--font-sans); font-size:13px; color:var(--hm-ink-soft); margin-bottom: 8px;}
+  .foot .meta { font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--hm-ink-muted); line-height:1.7;}
+
+  /* Product Page */
+  .pp { display:grid; grid-template-columns: 1fr 1fr; gap: 0; min-height:680px;}
+  .pp .gallery { background:#F3EBE6; padding: 60px; display:flex; align-items:center; justify-content:center; position:relative; border-right:1px solid var(--color-hairline);}
+  .pp .gallery .main { width: 70%; aspect-ratio: 1; background: linear-gradient(135deg,#EFE6E3 0%, #F3EBE6 100%); display:flex; align-items:center; justify-content:center;}
+  .pp .gallery .main span { font-family:var(--font-display); font-size:100px; color: rgba(26,26,26,.12);}
+  .pp .gallery .thumbs { position:absolute; left: 40px; bottom: 40px; display:flex; flex-direction:column; gap:10px;}
+  .pp .gallery .thumbs div { width:56px; height:56px; background:#fff; border:1px solid var(--color-hairline);}
+  .pp .gallery .thumbs div.on { border-color: var(--hm-ink);}
+  .pp .info { padding: 60px; display:flex; flex-direction:column; justify-content:center; max-width: 520px;}
+  .pp .info .brand { font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--hm-ink-muted); margin-bottom: 14px;}
+  .pp .info h2 { font-family:var(--font-display); font-size:44px; font-weight:400; line-height:1.05; letter-spacing:-.01em; margin: 0 0 12px;}
+  .pp .info .sub { font-family:var(--font-sans); font-size:14px; color:var(--hm-ink-soft); margin-bottom: 22px;}
+  .pp .info .price { font-family:var(--font-mono); font-size:15px; letter-spacing:.06em; margin-bottom: 30px; padding-bottom: 22px; border-bottom: 1px solid var(--color-hairline);}
+  .pp .info p.desc { font-family:var(--font-sans); font-size:14px; line-height:1.6; color:var(--hm-ink-soft); margin:0 0 28px;}
+  .pp .info .qty-row { display:flex; gap: 14px; align-items:stretch; margin-bottom: 16px;}
+  .pp .info .qty { display:flex; border:1px solid var(--hm-ink);}
+  .pp .info .qty button { background:transparent; border:0; width:44px; font-family:var(--font-sans); font-size:16px; cursor:pointer; color:var(--hm-ink);}
+  .pp .info .qty .num { display:flex; align-items:center; justify-content:center; width:48px; font-family:var(--font-mono); font-size:14px;}
+  .pp .info .qty-row .btn { flex:1; text-align:center; padding:15px 0;}
+  .pp .info .claims { display:flex; gap:14px; margin-top:18px;}
+  .pp .info .claims img { height: 56px;}
+
+  /* Category hero */
+  .cat-hero { background:#E5DEE7; padding: 80px 80px 70px; border-bottom: 1px solid var(--color-hairline); display:grid; grid-template-columns: 1fr auto; align-items:end; gap: 40px;}
+  .cat-hero .crumbs { font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--hm-ink-muted); margin-bottom:18px;}
+  .cat-hero h2 { font-family:var(--font-display); font-size:64px; font-weight:400; line-height:1; letter-spacing:-.02em; margin:0 0 16px;}
+  .cat-hero p { font-family:var(--font-sans); font-size:15px; line-height:1.6; color:var(--hm-ink-soft); max-width: 560px; margin:0;}
+  .cat-hero img { height: 160px;}
+  .filter-bar { display:flex; justify-content:space-between; padding: 22px 80px; background:#FAF6F2; border-bottom:1px solid var(--color-hairline);}
+  .filter-bar .group { display:flex; gap: 22px;}
+  .filter-bar .chip { font-family:var(--font-sans); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--hm-ink-soft); padding-bottom: 4px; border-bottom: 1px solid transparent;}
+  .filter-bar .chip.on { color:var(--hm-ink); border-bottom-color: var(--hm-ink);}
+  .filter-bar .sort { font-family:var(--font-sans); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--hm-ink);}
+
+</style>
+</head>
+<body>
+
+<div class="legend">
+  <div class="kicker">HairMNL.com · Website UI Kit</div>
+  <h1>Three core screens in the 2020 system.</h1>
+  <p>Home, category (By Hair Issue), and product. Editorial serif headlines sit on a blush paper ground; a tiny mono eyebrow labels every section; navigation and buttons are square with a 1px ink border. All copy pulls from the three brand pillars: <em>The Real Deal</em>, <em>No Stress Tresses</em>, and <em>At the Root</em>.</p>
+</div>
+
+<!-- SCREEN 1 · HOME -->
+<div class="frame-label"><span class="name">01 · Home</span><span class="note">1280 × scroll</span></div>
+<div class="frame" data-screen-label="01 Home">
+
+  <div class="annbar">Free shipping within Metro Manila for orders P 2,000 &amp; up &nbsp;·&nbsp; TOUSLED members earn double points this week</div>
+
+  <div class="nav">
+    <div class="logo"><img src="../../assets/logo/horizontal_black.png" alt="HairMNL"></div>
+    <div class="links">
+      <a>By Hair Issue</a><a>By Hair Type</a><a>By Brand</a><a>Backbar</a><a>Studio</a><a>Journal</a>
+    </div>
+    <div class="util"><a>Search</a><a>Account</a><a>Cart · 2</a></div>
+  </div>
+  <div class="subnav"><a>Shampoo</a><a>Conditioner</a><a>Treatments</a><a>Styling</a><a>Tools</a><a>Men</a><a>Gifting</a></div>
+
+  <div class="hero">
+    <div class="copy">
+      <div class="eyebrow">New arrival · Davines</div>
+      <h2>We speak <em>curl</em>.</h2>
+      <p>Every curl gets a voice — and the power to define itself. A curated routine built around your pattern, porosity, and the humid Manila air.</p>
+      <div style="display:flex; gap:14px;">
+        <a class="btn solid">Shop the edit</a>
+        <a class="btn">Take the quiz</a>
+      </div>
+    </div>
+    <div class="pic">
+      <div class="photo-note">[ PHOTOGRAPHY — EDITORIAL HAIR, NATURAL LIGHT ]</div>
+      <div class="stamp"><img src="../../assets/logo/seal_black.png" alt=""></div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="head">
+      <div>
+        <div class="eyebrow">Browse by concern</div>
+        <h3>What are you treating today?</h3>
+      </div>
+      <a>See all concerns</a>
+    </div>
+    <div class="seal-row">
+      <div class="cell"><img src="../../assets/icons/solutions/hairfall.png"><div class="l">Hairfall</div></div>
+      <div class="cell"><img src="../../assets/icons/solutions/damaged.png"><div class="l">Damage</div></div>
+      <div class="cell"><img src="../../assets/icons/solutions/frizz.png"><div class="l">Frizz</div></div>
+      <div class="cell"><img src="../../assets/icons/solutions/curls.png"><div class="l">Curls</div></div>
+      <div class="cell"><img src="../../assets/icons/solutions/colored.png"><div class="l">Colored</div></div>
+      <div class="cell"><img src="../../assets/icons/solutions/dandruff.png"><div class="l">Dandruff</div></div>
+      <div class="cell"><img src="../../assets/icons/solutions/brassiness.png"><div class="l">Brassiness</div></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="tile">
+      <div>
+        <div class="num">01 — The Real Deal</div>
+        <h4>Diagnose first, shop second.</h4>
+        <p>Our studio stylists translate hair science into a five-minute online consult. No questionnaire bingo — just the real deal.</p>
+      </div>
+      <a class="cta">Start the consult →</a>
+    </div>
+    <div class="tile alt">
+      <div>
+        <div class="num">03 — At the Root</div>
+        <h4>Your hair, yours to define.</h4>
+        <p>Three years on, we still believe every texture deserves a routine that actually works in tropical humidity. Come find yours.</p>
+      </div>
+      <a class="cta">Read our story →</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="head">
+      <div>
+        <div class="eyebrow">Best sellers · this week</div>
+        <h3>The most-loved bottles.</h3>
+      </div>
+      <a style="font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink);border-bottom:1px solid var(--hm-ink);padding-bottom:2px;">Shop all</a>
+    </div>
+    <div class="products">
+      <div class="pc"><div class="ribbon"><img src="../../assets/icons/ecom/best_seller.png"></div><div class="img"><span>K</span></div><div class="brand">Kérastase</div><div class="title">Résistance Bain Extentioniste</div><div class="price">P 1,800</div></div>
+      <div class="pc"><div class="ribbon"><img src="../../assets/icons/ecom/new.png"></div><div class="img"><span>D</span></div><div class="brand">Davines</div><div class="title">OI All-In-One Milk 135 ml</div><div class="price">P 1,575</div></div>
+      <div class="pc"><div class="img"><span>O</span></div><div class="brand">Olaplex</div><div class="title">No. 3 Hair Perfector</div><div class="price">P 1,650</div></div>
+      <div class="pc"><div class="ribbon"><img src="../../assets/icons/ecom/award_winning.png"></div><div class="img"><span>K</span></div><div class="brand">K18</div><div class="title">Leave-In Molecular Repair Mask</div><div class="price">P 3,200</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>
+      <img class="seal" src="../../assets/logo/seal_black.png" alt="">
+      <div class="meta">
+        2F BRIXTON ST.<br>KAPITOLYO, PASIG<br>METRO MANILA<br><br>MON–SAT 1000–1900<br>(+63) 908 897 7364
+      </div>
+    </div>
+    <div><h5>Shop</h5><ul><li>By Hair Issue</li><li>By Hair Type</li><li>By Brand</li><li>By Collection</li><li>Men</li></ul></div>
+    <div><h5>Discover</h5><ul><li>The Journal</li><li>HairMNL Studio</li><li>Backbar (B2B)</li><li>Gifting</li><li>Loyalty · TOUSLED</li></ul></div>
+    <div><h5>Help</h5><ul><li>Contact</li><li>Shipping &amp; Returns</li><li>Payments</li><li>Track order</li><li>FAQs</li></ul></div>
+  </div>
+</div>
+
+<!-- SCREEN 2 · CATEGORY -->
+<div class="frame-label"><span class="name">02 · Category — By Hair Issue · Frizz Control</span><span class="note">1280 × scroll</span></div>
+<div class="frame" data-screen-label="02 Category">
+  <div class="annbar">Free shipping within Metro Manila for orders P 2,000 &amp; up</div>
+  <div class="nav">
+    <div class="logo"><img src="../../assets/logo/horizontal_black.png" alt="HairMNL"></div>
+    <div class="links"><a>By Hair Issue</a><a>By Hair Type</a><a>By Brand</a><a>Backbar</a><a>Studio</a><a>Journal</a></div>
+    <div class="util"><a>Search</a><a>Account</a><a>Cart · 2</a></div>
+  </div>
+
+  <div class="cat-hero">
+    <div>
+      <div class="crumbs">Home · By Hair Issue · Frizz Control</div>
+      <h2>Frizz, but make it <em>flow.</em></h2>
+      <p>Humidity isn't the enemy — under-nourished cuticles are. These 24 products smooth the lift without flattening the life out of your hair. Curated by our studio team.</p>
+    </div>
+    <img src="../../assets/icons/solutions/frizz.png" alt="Frizz seal">
+  </div>
+
+  <div class="filter-bar">
+    <div class="group">
+      <span class="chip on">All</span><span class="chip">Shampoo</span><span class="chip">Conditioner</span><span class="chip">Leave-in</span><span class="chip">Mask</span><span class="chip">Styling</span>
+    </div>
+    <div class="sort">Sort · Best selling ▾</div>
+  </div>
+
+  <div class="grid">
+    <div class="products">
+      <div class="pc"><div class="ribbon"><img src="../../assets/icons/ecom/best_seller.png"></div><div class="img"><span>K</span></div><div class="brand">Kérastase</div><div class="title">Discipline Bain Fluidealiste</div><div class="price">P 1,825</div></div>
+      <div class="pc"><div class="img"><span>D</span></div><div class="brand">Davines</div><div class="title">Melu Shampoo for Long Hair</div><div class="price">P 1,350</div></div>
+      <div class="pc"><div class="ribbon"><img src="../../assets/icons/ecom/special_offer.png"></div><div class="img"><span>R</span></div><div class="brand">Redken</div><div class="title">Frizz Dismiss Mask</div><div class="price">P 2,100</div></div>
+      <div class="pc"><div class="img"><span>L</span></div><div class="brand">L'Oréal Pro</div><div class="title">Liss Unlimited Prokeratin Serum</div><div class="price">P 1,450</div></div>
+      <div class="pc"><div class="img"><span>O</span></div><div class="brand">Olaplex</div><div class="title">No. 6 Bond Smoother</div><div class="price">P 1,475</div></div>
+      <div class="pc"><div class="ribbon"><img src="../../assets/icons/ecom/new.png"></div><div class="img"><span>M</span></div><div class="brand">Moroccanoil</div><div class="title">Frizz Control Spray</div><div class="price">P 1,900</div></div>
+      <div class="pc"><div class="img"><span>T</span></div><div class="brand">TIGI Bed Head</div><div class="title">Control Freak Serum</div><div class="price">P 990</div></div>
+      <div class="pc"><div class="ribbon"><img src="../../assets/icons/ecom/best_seller.png"></div><div class="img"><span>S</span></div><div class="brand">Schwarzkopf</div><div class="title">BC Smooth Perfect Mask</div><div class="price">P 1,150</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3 · PRODUCT -->
+<div class="frame-label"><span class="name">03 · Product detail</span><span class="note">1280 × scroll</span></div>
+<div class="frame" data-screen-label="03 Product">
+  <div class="annbar">Free shipping within Metro Manila for orders P 2,000 &amp; up</div>
+  <div class="nav">
+    <div class="logo"><img src="../../assets/logo/horizontal_black.png" alt="HairMNL"></div>
+    <div class="links"><a>By Hair Issue</a><a>By Hair Type</a><a>By Brand</a><a>Backbar</a><a>Studio</a><a>Journal</a></div>
+    <div class="util"><a>Search</a><a>Account</a><a>Cart · 2</a></div>
+  </div>
+
+  <div class="pp">
+    <div class="gallery">
+      <div class="main"><span>K</span></div>
+      <div class="thumbs">
+        <div class="on"></div><div></div><div></div><div></div>
+      </div>
+    </div>
+    <div class="info">
+      <div class="brand">Kérastase · Résistance</div>
+      <h2>Bain Extentioniste <em>Length-Strengthening</em> Shampoo</h2>
+      <div class="sub">For weakened, mid-lengths-to-ends · 250 ml</div>
+      <div class="price">P 1,800</div>
+      <p class="desc">A cleansing routine formulated with Ciment-Alpha and Creatine R, strengthening the fibre from root to tip. Translated from salon use for everyday home care — because resilient length starts in the shower.</p>
+      <div class="qty-row">
+        <div class="qty"><button>−</button><div class="num">1</div><button>+</button></div>
+        <a class="btn solid">Add to cart</a>
+      </div>
+      <a style="font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink);border-bottom:1px solid var(--hm-ink);padding-bottom:2px;align-self:flex-start;margin-top:8px;">Add to TOUSLED wishlist →</a>
+      <div class="claims">
+        <img src="../../assets/icons/product/paraben_free.png" alt="Paraben Free">
+        <img src="../../assets/icons/product/sulfate_free.png" alt="Sulfate Free">
+        <img src="../../assets/icons/product/vegan.png" alt="Vegan">
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="head">
+      <div>
+        <div class="eyebrow">Pairs nicely with</div>
+        <h3>Build the routine.</h3>
+      </div>
+    </div>
+    <div class="products">
+      <div class="pc"><div class="img"><span>K</span></div><div class="brand">Kérastase</div><div class="title">Résistance Conditioner</div><div class="price">P 1,900</div></div>
+      <div class="pc"><div class="img"><span>K</span></div><div class="brand">Kérastase</div><div class="title">Résistance Masque Extentioniste</div><div class="price">P 2,800</div></div>
+      <div class="pc"><div class="img"><span>K</span></div><div class="brand">Kérastase</div><div class="title">Extentioniste Thermique Serum</div><div class="price">P 2,100</div></div>
+      <div class="pc"><div class="img"><span>O</span></div><div class="brand">Olaplex</div><div class="title">No. 3 Hair Perfector</div><div class="price">P 1,650</div></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

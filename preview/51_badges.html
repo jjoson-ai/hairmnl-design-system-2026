@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../responsive_and_a11y.css">
+<link rel="stylesheet" href="../motion.css">
+<style>
+body{margin:0;padding:24px 28px;background:var(--hm-paper);font-family:var(--font-sans);color:var(--hm-ink);}
+.eyebrow{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink);margin-bottom:16px;}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-sans);font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:999px;}
+.b-success{background:var(--status-success-bg);color:var(--status-success-fg);}
+.b-warn{background:var(--status-warning-bg);color:var(--status-warning-fg);}
+.b-danger{background:var(--status-danger-bg);color:var(--status-danger-fg);}
+.b-info{background:var(--status-info-bg);color:var(--status-info-fg);}
+.b-sale{background:var(--status-sale-bg);color:var(--status-sale-fg);}
+.b-new{background:var(--hm-ink);color:var(--hm-paper);}
+.b-stock{background:#fff;color:var(--hm-ink);border:1px solid var(--color-hairline);}
+.dot{width:6px;height:6px;border-radius:999px;background:currentColor;}
+</style></head><body>
+<div class="eyebrow">Badges &amp; status pills</div>
+<div class="row">
+  <span class="badge b-new">New</span>
+  <span class="badge b-sale">On sale · 20%</span>
+  <span class="badge b-success"><span class="dot"></span>In stock</span>
+  <span class="badge b-warn"><span class="dot"></span>Low stock · 3 left</span>
+  <span class="badge b-danger"><span class="dot"></span>Sold out</span>
+  <span class="badge b-info">Pre-order</span>
+  <span class="badge b-stock">Vegan · Sulfate-free</span>
+</div>
+</body></html>

@@ -1,0 +1,243 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><title>HairMNL · Ads UI Kit</title>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+html,body{margin:0;padding:0;background:#EAE4DA;font-family:var(--font-sans);color:var(--hm-ink);}
+.stage{position:relative;width:100%;height:100%;overflow:hidden;}
+.bg-paper{background:var(--hm-paper);}
+.bg-ink{background:var(--hm-ink);color:var(--hm-paper);}
+.bg-blush{background:var(--hm-blush);}
+.bg-stone{background:var(--hm-stone);}
+.bg-sage{background:var(--hm-sage);}
+.bg-warm{background:var(--hm-paper-warm);}
+
+.dp{font-family:var(--font-display);font-weight:400;letter-spacing:-.018em;line-height:.98;}
+.si{font-family:var(--font-serif-italic);font-style:italic;font-weight:400;}
+.eb{font-family:var(--font-mono);letter-spacing:.18em;text-transform:uppercase;}
+
+.grain{position:absolute;inset:0;background:url('../../assets/patterns/hair_strands.png') center/cover;opacity:.14;mix-blend-mode:multiply;pointer-events:none;}
+
+.photo{position:relative;overflow:hidden;}
+.photo.warm{background:linear-gradient(135deg,#C9B9A8 0%,#E7D8C3 60%,#EFE6E3 100%);}
+.photo.cool{background:linear-gradient(135deg,#C2B9C6 0%,#DDD3E0 55%,#EAE3ED 100%);}
+.photo .fig{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:rgba(26,26,26,.16);}
+
+.cta{display:inline-block;font-family:var(--font-sans);font-weight:500;background:var(--hm-ink);color:var(--hm-paper);}
+.cta.invert{background:var(--hm-paper);color:var(--hm-ink);}
+.cta.outline{background:transparent;color:var(--hm-ink);border:1px solid var(--hm-ink);}
+
+.logo img{height:12px;}
+.logo.paper img{filter:invert(1);}
+.seal img{height:26px;}
+.seal.paper img{filter:invert(1);}
+
+</style>
+</head>
+<body>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<div id="root"></div>
+<script type="text/babel" src="./design-canvas.jsx"></script>
+<script type="text/babel">
+const { DesignCanvas, DCSection, DCArtboard, DCPostIt } = window;
+
+/* ============ DISPLAY · Leaderboard 728×90 ============ */
+const Leaderboard = () => (
+  <div className="stage bg-paper" style={{display:'grid', gridTemplateColumns:'90px 1fr 120px', alignItems:'center', padding:'0 18px', gap:16}}>
+    <div style={{width:62, height:62, background:'linear-gradient(135deg,#C9B9A8,#E7D8C3)', position:'relative', overflow:'hidden'}}>
+      <div className="grain"/>
+      <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:40, color:'rgba(26,26,26,.2)'}}>K</div>
+    </div>
+    <div>
+      <div className="eb" style={{fontSize:9, color:'var(--hm-ink-muted)', marginBottom:4}}>Kérastase · now 20% off</div>
+      <div className="dp" style={{fontSize:22}}>Humidity isn't the enemy. <span className="si">Under-nourished cuticles</span> are.</div>
+    </div>
+    <div style={{textAlign:'right'}}>
+      <div className="cta" style={{padding:'9px 14px', fontSize:9, letterSpacing:'.18em', textTransform:'uppercase'}}>Shop now →</div>
+      <div className="logo" style={{marginTop:6}}><img src="../../assets/logo/horizontal_black.png"/></div>
+    </div>
+  </div>
+);
+
+const LeaderboardB = () => (
+  <div className="stage bg-ink" style={{display:'grid', gridTemplateColumns:'1fr auto', alignItems:'center', padding:'0 22px', gap:16, color:'var(--hm-paper)'}}>
+    <div>
+      <div className="eb" style={{fontSize:9, color:'rgba(250,246,242,.6)', marginBottom:4}}>Semi-annual sale · Live now</div>
+      <div className="dp" style={{fontSize:24, color:'var(--hm-paper)'}}>Take <span className="si">25% off</span> our entire shelf. No code needed.</div>
+    </div>
+    <div style={{display:'flex', alignItems:'center', gap:14}}>
+      <div className="cta invert" style={{padding:'10px 16px', fontSize:9, letterSpacing:'.18em', textTransform:'uppercase'}}>Shop the sale</div>
+      <div className="logo paper"><img src="../../assets/logo/horizontal_white.png"/></div>
+    </div>
+  </div>
+);
+
+/* ============ DISPLAY · Medium Rectangle 300×250 ============ */
+const MedRect = () => (
+  <div className="stage bg-blush" style={{padding:'18px 20px', position:'relative'}}>
+    <div className="eb" style={{fontSize:9, color:'var(--hm-ink-muted)', marginBottom:10}}>New · Davines</div>
+    <div className="dp" style={{fontSize:30, color:'var(--hm-ink)'}}>We speak<br/><span className="si">curl.</span></div>
+    <div style={{fontSize:11, color:'var(--hm-ink-soft)', lineHeight:1.45, margin:'12px 0 14px', maxWidth:180}}>A routine built around your pattern — for Manila humidity.</div>
+    <div className="cta" style={{padding:'9px 14px', fontSize:9, letterSpacing:'.18em', textTransform:'uppercase'}}>Shop the edit</div>
+    <div style={{position:'absolute', right:12, bottom:12}} className="logo"><img src="../../assets/logo/horizontal_black.png"/></div>
+  </div>
+);
+
+const MedRectB = () => (
+  <div className="stage photo warm">
+    <div className="fig" style={{fontSize:120}}>O</div>
+    <div className="grain"/>
+    <div style={{position:'absolute', inset:'auto 0 0 0', padding:'16px 18px', background:'linear-gradient(180deg, transparent, rgba(26,26,26,.88))', color:'var(--hm-paper)'}}>
+      <div className="eb" style={{fontSize:9, color:'rgba(250,246,242,.6)', marginBottom:6}}>Restocked</div>
+      <div className="dp" style={{fontSize:22, color:'var(--hm-paper)'}}>Olaplex No. 3 — <span className="si">back in.</span></div>
+      <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:10}}>
+        <div className="cta invert" style={{padding:'7px 12px', fontSize:9, letterSpacing:'.16em', textTransform:'uppercase'}}>Shop</div>
+        <div className="logo paper"><img src="../../assets/logo/horizontal_white.png"/></div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ============ DISPLAY · Skyscraper 160×600 ============ */
+const Sky = () => (
+  <div className="stage bg-paper" style={{padding:'18px 14px', display:'flex', flexDirection:'column'}}>
+    <div className="logo" style={{marginBottom:18}}><img src="../../assets/logo/horizontal_black.png"/></div>
+    <div className="eb" style={{fontSize:8.5, color:'var(--hm-ink-muted)', marginBottom:8}}>Hair notebook</div>
+    <div className="dp" style={{fontSize:22, color:'var(--hm-ink)'}}>Your hair<br/>is keeping<br/><span className="si">a record.</span></div>
+    <div style={{width:'100%', aspectRatio:'3/4', background:'linear-gradient(135deg,#C9B9A8,#EFE6E3)', margin:'18px 0', position:'relative', overflow:'hidden'}}>
+      <div className="grain"/>
+      <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:70, color:'rgba(26,26,26,.18)'}}>H</div>
+    </div>
+    <div style={{fontSize:10, color:'var(--hm-ink-soft)', lineHeight:1.5, marginBottom:12}}>Take the 60-second quiz — we'll curate a routine for your hair and Manila mornings.</div>
+    <div className="cta" style={{padding:'9px 10px', fontSize:9, letterSpacing:'.18em', textTransform:'uppercase', textAlign:'center', marginTop:'auto'}}>Start the quiz</div>
+  </div>
+);
+
+/* ============ META · Square 1080×1080 (single-image feed ad) ============ */
+const MetaSquare = () => (
+  <div className="stage bg-paper" style={{padding:'40px 44px', position:'relative'}}>
+    <div className="eb" style={{fontSize:11, color:'var(--hm-ink-muted)', marginBottom:22}}>Hair Quiz · Free · 60 seconds</div>
+    <div className="dp" style={{fontSize:58, color:'var(--hm-ink)'}}>Your<br/>routine,<br/><span className="si">built</span><br/>around<br/>you.</div>
+    <div style={{position:'absolute', right:44, top:54, bottom:54, width:'42%', background:'linear-gradient(135deg,#EFE6E3,#C9B9A8)', overflow:'hidden'}}>
+      <div className="grain"/>
+      <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:160, color:'rgba(26,26,26,.16)'}}>Q</div>
+    </div>
+    <div style={{position:'absolute', left:44, bottom:44, display:'flex', alignItems:'center', gap:14}}>
+      <div className="cta" style={{padding:'14px 22px', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase'}}>Take the quiz</div>
+      <div className="logo"><img src="../../assets/logo/horizontal_black.png" style={{height:16}}/></div>
+    </div>
+  </div>
+);
+
+const MetaSquareB = () => (
+  <div className="stage photo cool">
+    <div className="fig" style={{fontSize:200}}>C</div>
+    <div className="grain"/>
+    <div style={{position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(26,26,26,0) 40%, rgba(26,26,26,.82))'}}/>
+    <div style={{position:'absolute', left:42, right:42, bottom:42, color:'var(--hm-paper)'}}>
+      <div className="eb" style={{fontSize:11, color:'rgba(250,246,242,.65)', marginBottom:16}}>Free MNL shipping · P 2,000+</div>
+      <div className="dp" style={{fontSize:52, color:'var(--hm-paper)'}}>We speak <span className="si">curl.</span></div>
+      <div style={{display:'flex', alignItems:'center', gap:14, marginTop:22}}>
+        <div className="cta invert" style={{padding:'13px 20px', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase'}}>Shop the edit</div>
+        <div className="logo paper"><img src="../../assets/logo/horizontal_white.png" style={{height:14}}/></div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ============ META · Story 1080×1920 ============ */
+const MetaStory = () => (
+  <div className="stage bg-stone" style={{padding:'40px 32px', position:'relative'}}>
+    <div className="eb" style={{fontSize:11, color:'var(--hm-ink-muted)', marginBottom:14}}>Live now · Semi-annual sale</div>
+    <div className="dp" style={{fontSize:62, color:'var(--hm-ink)', marginTop:40}}><span className="si">Twenty-<br/>five</span><br/>percent<br/>off.<br/>Every-<br/>thing.</div>
+    <div style={{position:'absolute', left:32, right:32, bottom:120, display:'flex', gap:10}}>
+      <div style={{flex:1, height:70, background:'linear-gradient(180deg,#C9B9A8,#E7D8C3)', position:'relative', overflow:'hidden'}}><div className="grain"/><div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--font-display)',fontSize:36,color:'rgba(26,26,26,.2)'}}>K</div></div>
+      <div style={{flex:1, height:70, background:'linear-gradient(180deg,#E7D8C3,#C9B9A8)', position:'relative', overflow:'hidden'}}><div className="grain"/><div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--font-display)',fontSize:36,color:'rgba(26,26,26,.2)'}}>D</div></div>
+      <div style={{flex:1, height:70, background:'linear-gradient(180deg,#D4BCA6,#A89689)', position:'relative', overflow:'hidden'}}><div className="grain"/><div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'var(--font-display)',fontSize:36,color:'rgba(26,26,26,.2)'}}>O</div></div>
+    </div>
+    <div style={{position:'absolute', left:32, right:32, bottom:48, background:'var(--hm-ink)', color:'var(--hm-paper)', padding:'16px 20px', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+      <div className="eb" style={{fontSize:10, color:'var(--hm-paper)'}}>Swipe up to shop</div>
+      <div className="logo paper"><img src="../../assets/logo/horizontal_white.png" style={{height:12}}/></div>
+    </div>
+  </div>
+);
+
+const MetaStoryB = () => (
+  <div className="stage photo warm">
+    <div className="fig" style={{fontSize:260}}>H</div>
+    <div className="grain"/>
+    <div style={{position:'absolute', inset:'0 0 0 0', background:'linear-gradient(180deg, rgba(26,26,26,.65) 0%, transparent 35%, transparent 55%, rgba(26,26,26,.88))'}}/>
+    <div style={{position:'absolute', left:28, right:28, top:48, color:'var(--hm-paper)'}}>
+      <div className="eb" style={{fontSize:10, color:'rgba(250,246,242,.7)', marginBottom:16}}>Hair quiz · 60 seconds</div>
+      <div className="dp" style={{fontSize:54, color:'var(--hm-paper)'}}>Meet the<br/>routine<br/><span className="si">built for<br/>your hair.</span></div>
+    </div>
+    <div style={{position:'absolute', left:28, right:28, bottom:48, color:'var(--hm-paper)'}}>
+      <div style={{fontSize:13, color:'rgba(250,246,242,.85)', lineHeight:1.55, marginBottom:16}}>Tell us about your hair — we'll curate a routine for Manila mornings in under a minute.</div>
+      <div style={{display:'flex', gap:12, alignItems:'center'}}>
+        <div className="cta invert" style={{padding:'14px 22px', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase'}}>Take the quiz</div>
+        <div className="logo paper"><img src="../../assets/logo/horizontal_white.png" style={{height:14}}/></div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ============ GOOGLE SEARCH AD (responsive, 600×100ish) ============ */
+const SearchAd = () => (
+  <div className="stage" style={{padding:'18px 22px', background:'#fff', border:'1px solid rgba(26,26,26,.1)', fontFamily:'Arial, sans-serif'}}>
+    <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:4}}>
+      <div style={{fontSize:10.5, padding:'1px 5px', border:'1px solid #1A1A1A', borderRadius:3, fontFamily:'Arial, sans-serif', fontWeight:700}}>Ad</div>
+      <div style={{fontSize:13, color:'#1A1A1A'}}>hairmnl.ph</div>
+    </div>
+    <div style={{fontFamily:'Arial, sans-serif', color:'#1a0dab', fontSize:19, fontWeight:400, marginBottom:4}}>
+      HairMNL · Salon Hair Care Delivered Within Metro Manila
+    </div>
+    <div style={{fontSize:13.5, color:'#4d5156', lineHeight:1.45}}>
+      Shop Kérastase, Davines, Olaplex, K18 and 60+ pro brands. Free shipping over P 2,000. Real human support, 9-6 PHT.
+    </div>
+    <div style={{display:'flex', gap:14, marginTop:8, fontSize:13, color:'#1a0dab'}}>
+      <span>Take the quiz</span><span>·</span><span>Studio booking</span><span>·</span><span>New arrivals</span><span>·</span><span>Backbar</span>
+    </div>
+  </div>
+);
+
+function App(){
+  return (
+    <DesignCanvas>
+      <DCSection id="display" title="Display ads" subtitle="IAB standard sizes for programmatic buys">
+        <DCArtboard id="lb1" label="Leaderboard · soft" width={728} height={90}><Leaderboard/></DCArtboard>
+        <DCArtboard id="lb2" label="Leaderboard · sale" width={728} height={90}><LeaderboardB/></DCArtboard>
+        <DCArtboard id="mr1" label="Medium rect · brand" width={300} height={250}><MedRect/></DCArtboard>
+        <DCArtboard id="mr2" label="Medium rect · product" width={300} height={250}><MedRectB/></DCArtboard>
+        <DCArtboard id="sk1" label="Skyscraper · quiz" width={160} height={600}><Sky/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="meta" title="Meta — Instagram &amp; Facebook" subtitle="Paid feed and story placements">
+        <DCArtboard id="mq1" label="Square · quiz acquisition" width={440} height={440}><MetaSquare/></DCArtboard>
+        <DCArtboard id="mq2" label="Square · brand awareness" width={440} height={440}><MetaSquareB/></DCArtboard>
+        <DCArtboard id="ms1" label="Story · sale push" width={280} height={498}><MetaStory/></DCArtboard>
+        <DCArtboard id="ms2" label="Story · quiz acquisition" width={280} height={498}><MetaStoryB/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="search" title="Google search ad" subtitle="Responsive text · for reference">
+        <DCArtboard id="sa1" label="Search · brand terms" width={620} height={140}><SearchAd/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="rules" title="Ads rules of thumb" subtitle="What keeps paid media looking like editorial, not like a clearance sale">
+        <DCPostIt x={0} y={0} width={230}>One idea per ad. A product, a promo, or a quiz — never two.</DCPostIt>
+        <DCPostIt x={260} y={0} width={230}>Serif italic is reserved for one phrase per ad. No exceptions, even on display sizes where every letter counts.</DCPostIt>
+        <DCPostIt x={520} y={0} width={230}>Wordmark bottom-right on display. Seal never goes on an ad that is below 300 px wide — becomes a blob.</DCPostIt>
+        <DCPostIt x={0} y={130} width={230}>No discount % larger than the headline type. The brand always leads; the deal supports.</DCPostIt>
+        <DCPostIt x={260} y={130} width={230}>Emoji allowed in paid social captions, never in the asset itself.</DCPostIt>
+        <DCPostIt x={520} y={130} width={230}>Always test at 50% scale. If it doesn't read on mobile, it doesn't ship.</DCPostIt>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

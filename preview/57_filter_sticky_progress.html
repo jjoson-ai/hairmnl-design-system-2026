@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;padding:24px 28px;background:var(--hm-paper);font-family:var(--font-sans);color:var(--hm-ink);}
+.eyebrow{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink);margin-bottom:16px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+.card{background:#fff;border:1px solid rgba(26,26,26,.1);padding:22px;}
+.card h5{font-family:var(--font-sans);font-weight:700;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 14px;}
+
+/* Filter drawer sample */
+.sec{border-bottom:1px solid rgba(26,26,26,.1);padding:14px 0;}
+.sec:last-child{border-bottom:0;}
+.sec .h{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;}
+.sec label{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--hm-ink-soft);margin:6px 0;}
+.sec input[type=checkbox]{appearance:none;width:16px;height:16px;border:1px solid var(--hm-ink);background:#fff;display:inline-block;position:relative;}
+.sec input[type=checkbox]:checked{background:var(--hm-ink);}
+.sec input[type=checkbox]:checked::after{content:'';position:absolute;left:3px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);}
+.pricerange{display:flex;gap:10px;align-items:center;font-family:var(--font-mono);font-size:12px;color:var(--hm-ink-muted);}
+.pricerange input{font-family:var(--font-mono);font-size:12px;padding:8px 10px;border:1px solid rgba(26,26,26,.2);width:80px;}
+
+/* Sticky add-to-cart bar */
+.sticky{position:relative;height:190px;background:var(--hm-paper-warm);border:1px solid rgba(26,26,26,.1);overflow:hidden;padding:18px;}
+.sticky .stub{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:100px;}
+.sticky .bar{position:absolute;inset:auto 0 0 0;background:#fff;border-top:1px solid rgba(26,26,26,.12);padding:12px 16px;display:flex;align-items:center;gap:14px;}
+.sticky .bar .ti{width:40px;height:40px;background:var(--hm-blush);flex-shrink:0;}
+.sticky .bar .t{flex:1;min-width:0;}
+.sticky .bar .t .n{font-family:var(--font-display);font-size:14px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sticky .bar .t .p{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--hm-ink-muted);margin-top:2px;}
+.sticky .bar .b{font-family:var(--font-sans);font-weight:500;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;padding:10px 14px;background:var(--hm-ink);color:#fff;}
+
+/* Progress bar */
+.prog .track{height:4px;background:rgba(26,26,26,.1);position:relative;margin:14px 0 8px;}
+.prog .track .fill{position:absolute;inset:0 auto 0 0;width:62%;background:var(--hm-ink);}
+.prog .cap{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--hm-ink-muted);}
+.prog .msg{font-family:var(--font-sans);font-size:13px;color:var(--hm-ink-soft);margin-top:6px;}
+
+/* Wishlist / quantity */
+.qty{display:inline-flex;border:1px solid var(--hm-ink);}
+.qty button{background:transparent;border:0;width:34px;height:34px;font-family:var(--font-sans);font-size:14px;cursor:pointer;}
+.qty .n{display:inline-flex;align-items:center;justify-content:center;width:34px;font-family:var(--font-mono);font-size:12px;}
+.wish{width:40px;height:40px;border:1px solid var(--hm-ink);display:inline-flex;align-items:center;justify-content:center;background:#fff;}
+</style></head><body>
+
+<div class="eyebrow">Extended components</div>
+<div class="grid">
+  <div class="card">
+    <h5>Filter drawer</h5>
+    <div class="sec"><div class="h">Hair issue</div>
+      <label><input type="checkbox" checked> Frizz control</label>
+      <label><input type="checkbox"> Damaged</label>
+      <label><input type="checkbox"> Coloured</label>
+      <label><input type="checkbox"> Hairfall</label>
+    </div>
+    <div class="sec"><div class="h">Price · PHP</div>
+      <div class="pricerange"><input value="500"><span>—</span><input value="3500"></div>
+    </div>
+    <div class="sec"><div class="h">Claims</div>
+      <label><input type="checkbox" checked> Sulfate-free</label>
+      <label><input type="checkbox"> Vegan</label>
+      <label><input type="checkbox"> Paraben-free</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h5>Sticky add-to-cart</h5>
+    <div class="sticky">
+      <div class="stub">[ SCROLLED PAST HERO ]</div>
+      <div class="bar">
+        <div class="ti"></div>
+        <div class="t">
+          <div class="n">Kérastase Résistance Bain</div>
+          <div class="p">P 1,800 · 250 ml</div>
+        </div>
+        <div class="qty"><button>−</button><div class="n">1</div><button>+</button></div>
+        <div class="b">Add</div>
+      </div>
+    </div>
+
+    <h5 style="margin-top:22px;">Free-shipping progress</h5>
+    <div class="prog">
+      <div class="cap">P 1,240 of P 2,000</div>
+      <div class="track"><div class="fill"></div></div>
+      <div class="msg">Add P 760 more and we'll ship it free within Metro Manila.</div>
+    </div>
+
+    <h5 style="margin-top:22px;">Quantity &amp; wishlist</h5>
+    <div style="display:flex;gap:10px;"><div class="qty"><button>−</button><div class="n">1</div><button>+</button></div><div class="wish" title="Save to wishlist">♡</div></div>
+  </div>
+</div>
+
+</body></html>

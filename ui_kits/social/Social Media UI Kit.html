@@ -1,0 +1,367 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><title>HairMNL · Social UI Kit</title>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+html,body{margin:0;padding:0;background:#EAE4DA;font-family:var(--font-sans);color:var(--hm-ink);}
+
+/* Canvas frame styles */
+.bg-paper{background:var(--hm-paper);}
+.bg-warm{background:var(--hm-paper-warm);}
+.bg-stone{background:var(--hm-stone);}
+.bg-blush{background:var(--hm-blush);}
+.bg-lilac{background:var(--hm-lilac);}
+.bg-sage{background:var(--hm-sage);}
+.bg-ink{background:var(--hm-ink);color:var(--hm-paper);}
+
+.stage{position:relative;width:100%;height:100%;overflow:hidden;}
+.stage.pad{padding:54px 48px;}
+.stage.pad-sm{padding:40px 32px;}
+.stage.pad-tight{padding:28px 24px;}
+
+.brand-stamp{position:absolute;bottom:20px;left:22px;display:flex;align-items:center;gap:8px;font-family:var(--font-sans);font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:currentColor;}
+.brand-stamp img{height:14px;}
+.brand-stamp.tr{right:22px;left:auto;top:20px;bottom:auto;}
+.brand-stamp.br-ltr{bottom:20px;right:22px;left:auto;}
+
+.eb{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+.eb.muted{color:var(--hm-ink-muted);}
+.eb.paper{color:var(--hm-paper);opacity:.7;}
+
+.dp{font-family:var(--font-display);font-weight:400;letter-spacing:-.018em;line-height:.98;}
+.serif-em{font-family:var(--font-serif-italic);font-style:italic;font-weight:400;}
+
+/* Texture helpers */
+.grain{position:absolute;inset:0;background:url('../../assets/patterns/hair_strands.png') center/cover;opacity:.14;mix-blend-mode:multiply;pointer-events:none;}
+.hl{height:1px;background:currentColor;opacity:.3;width:36px;}
+
+/* Editorial image placeholder */
+.photo{position:relative;overflow:hidden;}
+.photo .tag{position:absolute;bottom:14px;left:14px;font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(26,26,26,.55);}
+.photo.warm{background:linear-gradient(135deg,#C9B9A8 0%,#E7D8C3 60%,#EFE6E3 100%);}
+.photo.cool{background:linear-gradient(135deg,#C2B9C6 0%,#DDD3E0 55%,#EAE3ED 100%);}
+.photo.stone{background:linear-gradient(135deg,#A69C93 0%,#D2C7BE 60%,#EAE0D6 100%);}
+.photo.sage{background:linear-gradient(135deg,#9CA99A 0%,#C4CEBF 55%,#DFE3DA 100%);}
+.photo .fig{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:92px;color:rgba(26,26,26,.16);}
+
+/* Carousel page indicator */
+.pg{position:absolute;top:24px;right:26px;display:flex;gap:5px;align-items:center;}
+.pg i{width:18px;height:2px;background:currentColor;opacity:.25;}
+.pg i.on{opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- Load React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<div id="root"></div>
+
+<script type="text/babel" src="./design-canvas.jsx"></script>
+
+<script type="text/babel">
+const { DesignCanvas, DCSection, DCArtboard, DCPostIt } = window;
+
+// Shared SVG brand mark
+const Seal = ({size=40, color='currentColor'}) => (
+  <img src="../../assets/logo/seal_black.png" style={{height:size, filter: color==='paper' ? 'invert(1)' : 'none'}}/>
+);
+const Wordmark = ({color='paper'}) => (
+  <img src={color==='paper' ? '../../assets/logo/horizontal_white.png' : '../../assets/logo/horizontal_black.png'} style={{height:14}}/>
+);
+
+/* ========== 1:1 INSTAGRAM POST TEMPLATES (1080×1080 → shown at 540) ========== */
+
+const IG_Quote = () => (
+  <div className="stage bg-paper pad">
+    <div className="eb muted" style={{marginBottom:22}}>Hair notebook · No. 014</div>
+    <div className="dp" style={{fontSize:66, color:'var(--hm-ink)'}}>
+      Humidity<br/>isn't the enemy.<br/>
+      <span className="serif-em">Under-nourished<br/>cuticles</span> are.
+    </div>
+    <div className="brand-stamp br-ltr">
+      <img src="../../assets/logo/horizontal_black.png"/>
+    </div>
+  </div>
+);
+
+const IG_Product = () => (
+  <div className="stage bg-warm pad">
+    <div className="eb muted" style={{marginBottom:18}}>New · Davines</div>
+    <div className="dp" style={{fontSize:58}}>
+      OI All-In-<br/>One Milk.
+    </div>
+    <div style={{fontSize:15, color:'var(--hm-ink-soft)', lineHeight:1.5, margin:'18px 0 24px', maxWidth:330}}>
+      One product. Eleven things it does. Detangle, soften, protect from heat, and hold onto colour longer.
+    </div>
+    <div style={{position:'absolute', right:48, top:54, bottom:54, width:280, background:'linear-gradient(180deg,#EAD7C4 0%,#D4BCA6 100%)', display:'flex', alignItems:'center', justifyContent:'center'}}>
+      <div className="grain"/>
+      <div style={{fontFamily:'var(--font-display)', fontSize:120, color:'rgba(26,26,26,.16)'}}>D</div>
+    </div>
+    <div style={{position:'absolute', left:48, bottom:48, fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'.1em'}}>P 1,575 · 135 ml</div>
+    <div className="brand-stamp"><img src="../../assets/logo/horizontal_black.png"/></div>
+  </div>
+);
+
+const IG_Editorial = () => (
+  <div className="stage photo warm">
+    <div className="fig">M</div>
+    <div className="grain"/>
+    <div style={{position:'absolute', left:42, top:42, color:'#fff', mixBlendMode:'difference'}}>
+      <div className="eb" style={{opacity:.85, marginBottom:14}}>Routine · Curly</div>
+      <div className="dp" style={{fontSize:48, color:'#fff'}}>We speak<br/><span className="serif-em">curl.</span></div>
+    </div>
+    <div style={{position:'absolute', left:42, bottom:42, color:'#fff', display:'flex', alignItems:'center', gap:10, mixBlendMode:'difference'}}>
+      <Wordmark color="paper"/>
+      <div style={{width:1, height:12, background:'#fff', opacity:.5}}/>
+      <div className="eb" style={{color:'#fff', opacity:.85}}>@hairmnl</div>
+    </div>
+  </div>
+);
+
+const IG_Announcement = () => (
+  <div className="stage bg-ink pad">
+    <div className="eb paper" style={{marginBottom:32}}>· LIVE NOW ·</div>
+    <div className="dp" style={{fontSize:72, color:'var(--hm-paper)'}}>
+      <span className="serif-em">Semi-</span><br/>annual<br/>sale.
+    </div>
+    <div style={{position:'absolute', left:48, bottom:140}}>
+      <div style={{fontFamily:'var(--font-display)', fontSize:88, color:'var(--hm-paper)', lineHeight:1}}>25%</div>
+      <div className="eb" style={{color:'var(--hm-paper)', opacity:.6, marginTop:4}}>off · sitewide · no code</div>
+    </div>
+    <div style={{position:'absolute', right:48, bottom:48, width:72, height:72, border:'1px solid rgba(255,255,255,.4)', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center'}}>
+      <Seal color="paper" size={32}/>
+    </div>
+    <div className="brand-stamp" style={{color:'var(--hm-paper)', opacity:.7}}><img src="../../assets/logo/horizontal_white.png" style={{height:12}}/></div>
+  </div>
+);
+
+/* ========== IG CAROUSEL (5 cards) — each 1080×1080 ========== */
+
+const Car1 = () => (
+  <div className="stage bg-stone pad">
+    <div className="eb muted" style={{marginBottom:18}}>Journal · Humidity 101</div>
+    <div className="dp" style={{fontSize:66, color:'var(--hm-ink)'}}>
+      Five things<br/>your hair<br/>
+      <span className="serif-em">really</span><br/>needs in<br/>April.
+    </div>
+    <div style={{position:'absolute', left:48, bottom:48, display:'flex', alignItems:'center', gap:10, fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.1em'}}>
+      <span>SWIPE →</span>
+    </div>
+    <div className="brand-stamp br-ltr"><img src="../../assets/logo/horizontal_black.png"/></div>
+  </div>
+);
+const CarN = ({n, total, eb, title, body}) => (
+  <div className="stage bg-paper pad-sm">
+    <div className="pg">{Array.from({length:total}).map((_,i)=>(<i key={i} className={i<n?'on':''}/>))}</div>
+    <div className="eb muted" style={{marginBottom:18, marginTop:30}}>{String(n).padStart(2,'0')} · {eb}</div>
+    <div className="dp" style={{fontSize:46, color:'var(--hm-ink)', maxWidth:440}}>{title}</div>
+    <div style={{fontSize:15, color:'var(--hm-ink-soft)', lineHeight:1.55, marginTop:22, maxWidth:420}}>{body}</div>
+    <div className="brand-stamp br-ltr"><img src="../../assets/logo/horizontal_black.png"/></div>
+  </div>
+);
+const CarEnd = () => (
+  <div className="stage bg-ink pad">
+    <div className="eb paper" style={{marginBottom:22}}>Get the routine</div>
+    <div className="dp" style={{fontSize:58, color:'var(--hm-paper)'}}>
+      Take our<br/>60-second<br/><span className="serif-em">hair quiz.</span>
+    </div>
+    <div style={{position:'absolute', left:48, bottom:140, padding:'14px 24px', background:'var(--hm-paper)', color:'var(--hm-ink)', fontFamily:'var(--font-sans)', fontWeight:500, fontSize:11, letterSpacing:'.18em', textTransform:'uppercase'}}>
+      Link in bio → /quiz
+    </div>
+    <div className="brand-stamp" style={{color:'var(--hm-paper)'}}><img src="../../assets/logo/horizontal_white.png" style={{height:12}}/></div>
+  </div>
+);
+
+/* ========== IG STORY / REEL COVER · 9:16 (1080×1920 → shown at 360×640) ========== */
+
+const Story_Quote = () => (
+  <div className="stage bg-blush pad-sm">
+    <div className="eb muted" style={{marginBottom:16}}>Morning / No. 041</div>
+    <div className="dp" style={{fontSize:52, color:'var(--hm-ink)', marginTop:60}}>
+      Your hair<br/>is keeping<br/><span className="serif-em">a record</span><br/>of how<br/>you treat<br/>it.
+    </div>
+    <div style={{position:'absolute', left:32, right:32, bottom:48, display:'flex', justifyContent:'space-between', alignItems:'end'}}>
+      <img src="../../assets/logo/horizontal_black.png" style={{height:12}}/>
+      <div className="eb muted">@hairmnl</div>
+    </div>
+  </div>
+);
+
+const Story_Poll = () => (
+  <div className="stage bg-sage pad-sm">
+    <div className="eb muted" style={{marginBottom:16, marginTop:40}}>Tuesday poll</div>
+    <div className="dp" style={{fontSize:44, color:'var(--hm-ink)'}}>
+      Wash day:<br/>morning<br/><span className="serif-em">or night?</span>
+    </div>
+    <div style={{position:'absolute', left:32, right:32, top:'54%', display:'flex', flexDirection:'column', gap:12}}>
+      <div style={{background:'rgba(255,255,255,.5)', padding:'14px 18px', fontFamily:'var(--font-sans)', fontSize:14}}>☀ Morning, always</div>
+      <div style={{background:'rgba(26,26,26,.85)', color:'#fff', padding:'14px 18px', fontFamily:'var(--font-sans)', fontSize:14}}>🌙 Night owl wash</div>
+    </div>
+    <div style={{position:'absolute', left:32, bottom:40, right:32, display:'flex', justifyContent:'space-between'}}>
+      <img src="../../assets/logo/horizontal_black.png" style={{height:12}}/>
+      <div className="eb muted">@hairmnl</div>
+    </div>
+  </div>
+);
+
+const Reel_Cover = () => (
+  <div className="stage photo cool">
+    <div className="fig" style={{fontSize:160}}>R</div>
+    <div className="grain"/>
+    <div style={{position:'absolute', left:28, top:28, color:'#fff', mixBlendMode:'difference'}}>
+      <div className="eb paper" style={{marginBottom:12}}>Reel · 00:42</div>
+    </div>
+    <div style={{position:'absolute', left:28, right:28, bottom:100, color:'#fff', mixBlendMode:'difference'}}>
+      <div className="dp" style={{fontSize:54, color:'#fff'}}>The <span className="serif-em">5-minute</span><br/>curl routine<br/>for humid<br/>mornings.</div>
+    </div>
+    <div style={{position:'absolute', left:28, right:28, bottom:32, display:'flex', justifyContent:'space-between', color:'#fff', mixBlendMode:'difference'}}>
+      <img src="../../assets/logo/horizontal_white.png" style={{height:12}}/>
+      <div className="eb" style={{color:'#fff'}}>WATCH</div>
+    </div>
+  </div>
+);
+
+const Story_Product = () => (
+  <div className="stage bg-warm pad-tight">
+    <div className="eb muted" style={{marginBottom:14}}>In stock · 3 left</div>
+    <div className="dp" style={{fontSize:38, color:'var(--hm-ink)'}}>
+      Olaplex<br/>No. 3<br/><span className="serif-em">back in.</span>
+    </div>
+    <div style={{position:'absolute', left:28, right:28, top:290, bottom:180, background:'linear-gradient(180deg,#E7D8C3, #C9B9A8)', display:'flex', alignItems:'center', justifyContent:'center', overflow:'hidden'}}>
+      <div className="grain"/>
+      <div style={{fontFamily:'var(--font-display)', fontSize:180, color:'rgba(26,26,26,.18)'}}>O</div>
+    </div>
+    <div style={{position:'absolute', left:28, right:28, bottom:88}}>
+      <div style={{fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.08em', marginBottom:10}}>P 1,650 · 100 ml</div>
+      <div style={{background:'var(--hm-ink)', color:'#fff', padding:'14px 18px', textAlign:'center', fontFamily:'var(--font-sans)', fontSize:11, letterSpacing:'.18em', textTransform:'uppercase'}}>Swipe up to shop</div>
+    </div>
+    <div style={{position:'absolute', left:28, right:28, bottom:32, display:'flex', justifyContent:'space-between'}}>
+      <img src="../../assets/logo/horizontal_black.png" style={{height:12}}/>
+      <div className="eb muted">@hairmnl</div>
+    </div>
+  </div>
+);
+
+/* ========== PINTEREST PIN · 2:3 (1000×1500 → shown at 300×450) ========== */
+
+const Pin_A = () => (
+  <div className="stage bg-lilac pad-tight">
+    <div className="eb muted" style={{marginBottom:14}}>Save · Routine</div>
+    <div className="dp" style={{fontSize:42, color:'var(--hm-ink)'}}>
+      The<br/><span className="serif-em">coloured-<br/>hair</span><br/>routine<br/>that<br/>actually<br/>lasts.
+    </div>
+    <div style={{position:'absolute', left:24, right:24, bottom:80, fontSize:12, color:'var(--hm-ink-soft)', lineHeight:1.5}}>
+      Six products. Ten weeks. Zero brass. A step-by-step guide from the HairMNL studio chairs.
+    </div>
+    <div style={{position:'absolute', left:24, right:24, bottom:24, display:'flex', justifyContent:'space-between'}}>
+      <img src="../../assets/logo/horizontal_black.png" style={{height:11}}/>
+      <div className="eb muted">hairmnl.ph</div>
+    </div>
+  </div>
+);
+
+const Pin_B = () => (
+  <div className="stage photo stone">
+    <div className="fig" style={{fontSize:200}}>H</div>
+    <div className="grain"/>
+    <div style={{position:'absolute', inset:'auto 0 0 0', height:'55%', background:'linear-gradient(180deg, transparent, rgba(26,26,26,.9))'}}/>
+    <div style={{position:'absolute', left:24, right:24, bottom:60, color:'#fff'}}>
+      <div className="eb paper" style={{marginBottom:12}}>Journal</div>
+      <div className="dp" style={{fontSize:38, color:'#fff'}}>Eight signs<br/>your hair is<br/><span className="serif-em">over-cleansed.</span></div>
+    </div>
+    <div style={{position:'absolute', left:24, right:24, bottom:24, display:'flex', justifyContent:'space-between', color:'#fff'}}>
+      <img src="../../assets/logo/horizontal_white.png" style={{height:11}}/>
+      <div className="eb paper">hairmnl.ph</div>
+    </div>
+  </div>
+);
+
+/* ========== TIKTOK COVER · 9:16 matches story size ========== */
+
+const TT_Cover = () => (
+  <div className="stage bg-paper pad-tight">
+    <div className="eb muted" style={{marginBottom:14}}>TikTok · Episode 04</div>
+    <div className="dp" style={{fontSize:50, color:'var(--hm-ink)'}}>
+      Testing<br/>the<br/><span className="serif-em">viral</span><br/>rosemary<br/>oil<br/>for 30<br/>days.
+    </div>
+    <div style={{position:'absolute', left:28, right:28, bottom:120, display:'flex', gap:8, alignItems:'center'}}>
+      <div style={{width:28, height:28, borderRadius:'50%', background:'var(--hm-honey)'}}/>
+      <div style={{fontFamily:'var(--font-sans)', fontSize:13, fontWeight:500}}>w/ Marielle, editor</div>
+    </div>
+    <div style={{position:'absolute', left:28, right:28, bottom:70, fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.1em'}}>⏱  03:12 · 124K views</div>
+    <div style={{position:'absolute', left:28, right:28, bottom:32, display:'flex', justifyContent:'space-between'}}>
+      <img src="../../assets/logo/horizontal_black.png" style={{height:12}}/>
+      <div className="eb muted">@hairmnl</div>
+    </div>
+  </div>
+);
+
+/* ========== PROFILE AVATAR (400×400 → shown at 200×200) ========== */
+
+const Avatar_Light = () => (
+  <div className="stage bg-paper" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+    <img src="../../assets/logo/seal_black.png" style={{height:'54%'}}/>
+  </div>
+);
+const Avatar_Dark = () => (
+  <div className="stage bg-ink" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+    <img src="../../assets/logo/seal_black.png" style={{height:'54%', filter:'invert(1)'}}/>
+  </div>
+);
+
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection id="ig-post" title="Instagram · Feed post" subtitle="1080 × 1080 · 1:1 · four post formats">
+        <DCArtboard id="q" label="A · Quote" width={540} height={540}><IG_Quote/></DCArtboard>
+        <DCArtboard id="p" label="B · Product drop" width={540} height={540}><IG_Product/></DCArtboard>
+        <DCArtboard id="e" label="C · Editorial" width={540} height={540}><IG_Editorial/></DCArtboard>
+        <DCArtboard id="a" label="D · Announcement" width={540} height={540}><IG_Announcement/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="ig-carousel" title="Instagram · Carousel" subtitle="5 cards · 1:1 · swipeable explainer">
+        <DCArtboard id="c1" label="01 · Cover" width={440} height={440}><Car1/></DCArtboard>
+        <DCArtboard id="c2" label="02" width={440} height={440}><CarN n={2} total={5} eb="Humidity 101" title={<>The <span className="serif-em">cuticle</span> is not your enemy.</>} body={"It's a shingle, not a wall. When it lifts, water escapes and frizz starts. Smoothing it down is the whole game."}/></DCArtboard>
+        <DCArtboard id="c3" label="03" width={440} height={440}><CarN n={3} total={5} eb="Habits" title={<>Washing <span className="serif-em">less</span> is the move.</>} body={"2–3 times a week, max. Daily shampooing strips the sebum that your scalp worked hard to balance."}/></DCArtboard>
+        <DCArtboard id="c4" label="04" width={440} height={440}><CarN n={4} total={5} eb="Pairings" title={<>Leave-ins are the <span className="serif-em">MVP.</span></>} body={"A humidity-blocking leave-in seals the deal. Davines OI Milk or K18 Mist are our editors' picks for April."}/></DCArtboard>
+        <DCArtboard id="c5" label="05 · CTA" width={440} height={440}><CarEnd/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="story" title="Instagram Stories & Reels" subtitle="1080 × 1920 · 9:16 · five formats">
+        <DCArtboard id="s1" label="Quote story" width={330} height={586}><Story_Quote/></DCArtboard>
+        <DCArtboard id="s2" label="Poll sticker" width={330} height={586}><Story_Poll/></DCArtboard>
+        <DCArtboard id="s3" label="Reel cover" width={330} height={586}><Reel_Cover/></DCArtboard>
+        <DCArtboard id="s4" label="Product swipe-up" width={330} height={586}><Story_Product/></DCArtboard>
+        <DCArtboard id="s5" label="TikTok cover" width={330} height={586}><TT_Cover/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="pin" title="Pinterest" subtitle="1000 × 1500 · 2:3">
+        <DCArtboard id="p1" label="Routine pin · text-first" width={320} height={480}><Pin_A/></DCArtboard>
+        <DCArtboard id="p2" label="Journal pin · image-first" width={320} height={480}><Pin_B/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="avatar" title="Profile avatars" subtitle="400 × 400 · IG / TikTok / Pinterest · use the seal, never the wordmark">
+        <DCArtboard id="av1" label="Light" width={220} height={220}><Avatar_Light/></DCArtboard>
+        <DCArtboard id="av2" label="Dark" width={220} height={220}><Avatar_Dark/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="rules" title="Rules of thumb" subtitle="So channel posts still read as HairMNL from a thumbnail">
+        <DCPostIt x={0} y={0} width={230}>Editorial photo, quiet copy, one idea per post. Don't cram.</DCPostIt>
+        <DCPostIt x={260} y={0} width={230}>One family-of-tones per post. Don't mix paper + ink backgrounds on the same card.</DCPostIt>
+        <DCPostIt x={520} y={0} width={230}>Wordmark or seal always present. Bottom-left wordmark is the default.</DCPostIt>
+        <DCPostIt x={0} y={130} width={230}>Emoji allowed in captions and stories. Never in feed post typography.</DCPostIt>
+        <DCPostIt x={260} y={130} width={230}>Display type pairs display sans + serif italic. Never two fonts of the same style together.</DCPostIt>
+        <DCPostIt x={520} y={130} width={230}>Vertical video first. 9:16 + 1:1 crops supplied for every Reel.</DCPostIt>
+      </DCSection>
+
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

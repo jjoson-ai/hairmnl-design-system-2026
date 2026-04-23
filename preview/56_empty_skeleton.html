@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../motion.css">
+<style>
+body{margin:0;padding:24px 28px;background:var(--hm-paper);font-family:var(--font-sans);color:var(--hm-ink);}
+.eyebrow{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-ink);margin-bottom:16px;}
+.empty{max-width:380px;text-align:center;border:1px dashed rgba(26,26,26,.22);padding:48px 32px;background:#fff;}
+.empty .glyph{font-family:var(--font-display);font-size:62px;line-height:1;color:rgba(26,26,26,.22);margin-bottom:14px;}
+.empty h4{font-family:var(--font-display);font-weight:400;font-size:24px;letter-spacing:-.015em;margin:0 0 8px;}
+.empty p{font-size:13.5px;color:var(--hm-ink-soft);margin:0 0 22px;line-height:1.55;}
+.btn{display:inline-block;font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:12px 22px;background:var(--hm-ink);color:#fff;border:1px solid var(--hm-ink);cursor:pointer;text-decoration:none;}
+
+.row{display:flex;gap:24px;flex-wrap:wrap;}
+.skel{width:260px;background:#fff;border:1px solid rgba(26,26,26,.08);padding:16px;}
+.skel .a{aspect-ratio:1;margin-bottom:14px;}
+.skel .b{height:10px;width:60%;margin-bottom:8px;}
+.skel .c{height:14px;width:92%;margin-bottom:14px;}
+.skel .d{height:12px;width:40%;}
+</style></head><body>
+<div class="eyebrow">Empty state &amp; skeletons</div>
+<div class="row">
+  <div class="empty">
+    <div class="glyph">·</div>
+    <h4>Your <em>bag</em> is empty.</h4>
+    <p>Start by telling us about your hair — we'll curate a routine that fits.</p>
+    <a class="btn">Take the quiz</a>
+  </div>
+  <div class="skel">
+    <div class="a skeleton"></div>
+    <div class="b skeleton"></div>
+    <div class="c skeleton"></div>
+    <div class="d skeleton"></div>
+  </div>
+</div>
+</body></html>

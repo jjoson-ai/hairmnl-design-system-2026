@@ -1,0 +1,319 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><title>HairMNL · Design System · Index</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="colors_and_type.css">
+<template id="__bundler_thumbnail" data-bg-color="#1A1A1A">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect x="160" y="200" width="880" height="400" fill="#FAF6F2"/>
+    <text x="600" y="420" text-anchor="middle" font-family="serif" font-size="110" fill="#1A1A1A" font-style="italic">HairMNL</text>
+    <text x="600" y="490" text-anchor="middle" font-family="monospace" font-size="22" fill="#1A1A1A" letter-spacing="4">DESIGN · SYSTEM · 2026</text>
+  </svg>
+</template>
+<style>
+html,body{margin:0;padding:0;height:100%;background:#1A1A1A;color:var(--hm-paper);font-family:var(--font-sans);overflow:hidden;}
+.wrap{display:grid;grid-template-columns:280px 1fr;height:100vh;}
+.rail{background:#1A1A1A;border-right:1px solid rgba(250,246,242,.1);padding:28px 0 20px;overflow-y:auto;}
+.rail .brand{padding:0 24px 22px;border-bottom:1px solid rgba(250,246,242,.1);margin-bottom:14px;}
+.rail .kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,246,242,.5);margin-bottom:8px;}
+.rail h1{font-family:var(--font-display);font-weight:400;font-size:26px;line-height:1.05;margin:0;letter-spacing:-.015em;color:var(--hm-paper);}
+.rail h1 em{font-family:var(--font-serif-italic);font-style:italic;font-weight:400;}
+.rail .tag{font-size:11.5px;color:rgba(250,246,242,.55);margin-top:10px;line-height:1.45;}
+
+.group{margin:16px 0 4px;padding:0 24px;}
+.group .ghd{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,246,242,.4);margin-bottom:8px;}
+
+.nav a{display:block;padding:9px 24px;font-family:var(--font-sans);font-size:12.5px;color:rgba(250,246,242,.78);text-decoration:none;border-left:2px solid transparent;cursor:pointer;transition:.15s;position:relative;}
+.nav a:hover{background:rgba(250,246,242,.04);color:var(--hm-paper);}
+.nav a.on{color:var(--hm-paper);background:rgba(250,246,242,.06);border-left-color:var(--hm-paper);font-weight:500;}
+.nav a .sub{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.1em;color:rgba(250,246,242,.35);margin-top:2px;text-transform:uppercase;}
+.nav a.on .sub{color:rgba(250,246,242,.55);}
+
+.rail .foot{padding:16px 24px 8px;border-top:1px solid rgba(250,246,242,.1);margin-top:18px;}
+.rail .foot .k{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,242,.4);line-height:1.7;}
+
+.stage{position:relative;overflow:hidden;background:#0E0E0E;}
+.stage iframe{width:100%;height:100%;border:0;background:#FAF6F2;display:block;}
+
+.topbar{position:absolute;top:0;left:0;right:0;padding:10px 18px;background:rgba(14,14,14,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(250,246,242,.08);display:flex;justify-content:space-between;align-items:center;z-index:5;}
+.topbar .title{font-family:var(--font-display);font-size:15px;letter-spacing:-.01em;}
+.topbar .meta{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,242,.55);}
+.topbar .right{display:flex;gap:10px;align-items:center;}
+.topbar button{background:transparent;border:1px solid rgba(250,246,242,.2);color:rgba(250,246,242,.85);font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;transition:.15s;}
+.topbar button:hover{background:rgba(250,246,242,.08);border-color:rgba(250,246,242,.35);}
+
+.scroll-wrap{position:absolute;inset:46px 0 0 0;overflow:auto;background:#0E0E0E;}
+.scroll-wrap iframe{width:100%;border:0;background:transparent;display:block;}
+
+/* Cover screen */
+.cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;background:#FAF6F2;color:var(--hm-ink);}
+.cover .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:22px;}
+.cover h2{font-family:var(--font-display);font-weight:400;font-size:92px;line-height:.95;letter-spacing:-.02em;margin:0 0 14px;text-align:center;max-width:900px;}
+.cover h2 em{font-family:var(--font-serif-italic);font-style:italic;}
+.cover p{max-width:620px;text-align:center;color:var(--hm-ink-soft);font-size:15px;line-height:1.6;margin:0 0 36px;}
+.cover .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:min(880px,90%);}
+.cover .tile{background:#fff;border:1px solid rgba(26,26,26,.1);padding:18px 16px;cursor:pointer;transition:.18s;text-align:left;}
+.cover .tile:hover{background:#F3EBE6;border-color:var(--hm-ink);}
+.cover .tile .no{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--hm-ink-muted);margin-bottom:10px;}
+.cover .tile .nm{font-family:var(--font-display);font-size:18px;line-height:1.15;margin-bottom:4px;letter-spacing:-.01em;}
+.cover .tile .ds{font-size:10.5px;color:var(--hm-ink-muted);line-height:1.4;}
+
+.cover .stamp{margin-top:38px;width:56px;opacity:.7;}
+.cover .seal{height:32px;margin-bottom:24px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <aside class="rail">
+    <div class="brand">
+      <div class="kicker">Est. 2013 · Rev. 2026</div>
+      <h1>HairMNL<br/><em>Design</em> System</h1>
+      <div class="tag">Every surface · one vocabulary. 8 kits, 27 component cards, motion &amp; accessibility specs.</div>
+    </div>
+
+    <nav class="nav" id="nav">
+      <div class="group"><div class="ghd">Overview</div></div>
+      <a data-k="cover">Cover<span class="sub">Start here</span></a>
+      <a data-k="readme">Brand context<span class="sub">Voice · foundations · rules</span></a>
+
+      <div class="group"><div class="ghd">Tokens &amp; cards</div></div>
+      <a data-k="prev-colors">Colour palette<span class="sub">5 cards</span></a>
+      <a data-k="prev-type">Typography<span class="sub">3 cards</span></a>
+      <a data-k="prev-spacing">Spacing · radii · elevation<span class="sub">2 cards</span></a>
+      <a data-k="prev-components">Components<span class="sub">4 cards</span></a>
+      <a data-k="prev-brand">Brand &amp; illustration<span class="sub">5 cards</span></a>
+      <a data-k="prev-ext">Extended components<span class="sub">8 cards</span></a>
+
+      <div class="group"><div class="ghd">Channel kits</div></div>
+      <a data-k="kit-web">Website · desktop<span class="sub">Home · Cat · PDP · Blog · Cart</span></a>
+      <a data-k="kit-responsive">Website · responsive<span class="sub">Mobile 390 + Tablet 820</span></a>
+      <a data-k="kit-social">Social media<span class="sub">IG · Pinterest · TikTok</span></a>
+      <a data-k="kit-youtube">YouTube<span class="sub">Banner · thumbs · lower-thirds</span></a>
+      <a data-k="kit-email">Email<span class="sub">Welcome · order · newsletter</span></a>
+      <a data-k="kit-ads">Ads<span class="sub">Display · Meta · search</span></a>
+
+      <div class="group"><div class="ghd">Specifications</div></div>
+      <a data-k="spec-motion">Motion<span class="sub">motion.css + reduced-motion</span></a>
+      <a data-k="spec-a11y">Accessibility<span class="sub">WCAG 2.2 AA · checklist</span></a>
+      <a data-k="spec-photo">Photography &amp; video<span class="sub">2026 addendum</span></a>
+    </nav>
+
+    <div class="foot">
+      <div class="k">v 2026.1<br/>Compiled Apr 2026<br/><br/>Serious Studio × HairMNL</div>
+    </div>
+  </aside>
+
+  <div class="stage" id="stage">
+    <!-- injected per-screen -->
+  </div>
+</div>
+
+<!-- ============ CONTENT PAYLOADS ============ -->
+<script type="application/json" id="content-map">
+{
+  "cover":         { "mode":"cover" },
+  "readme":        { "mode":"md",    "src":"README.md",                       "title":"Brand context · README" },
+  "prev-colors":   { "mode":"cards", "title":"Colour palette",          "cards":["preview/01_colors_primary.html","preview/02_colors_secondary.html","preview/03_colors_tertiary_warm.html","preview/04_colors_tertiary_cool.html","preview/05_colors_ink.html"] },
+  "prev-type":     { "mode":"cards", "title":"Typography",              "cards":["preview/10_type_display.html","preview/11_type_scale.html","preview/12_type_body_mono.html"] },
+  "prev-spacing":  { "mode":"cards", "title":"Spacing · radii · elevation","cards":["preview/20_spacing.html","preview/21_radii_elevation.html"] },
+  "prev-components":{ "mode":"cards","title":"Components",              "cards":["preview/30_buttons.html","preview/31_inputs.html","preview/32_pillars.html","preview/33_product_card.html"] },
+  "prev-brand":    { "mode":"cards", "title":"Brand &amp; illustration","cards":["preview/40_logos.html","preview/41_pattern.html","preview/42_solution_seals.html","preview/43_ecom_labels.html","preview/44_illustrations.html"] },
+  "prev-ext":      { "mode":"cards", "title":"Extended components (2026)","cards":["preview/50_icons.html","preview/51_badges.html","preview/52_toasts.html","preview/53_modal.html","preview/54_stepper_tabs_accordion.html","preview/55_reviews.html","preview/56_empty_skeleton.html","preview/57_filter_sticky_progress.html"] },
+  "kit-web":       { "mode":"iframe","src":"ui_kits/web/Website UI Kit.html",       "title":"Website UI Kit · desktop 1440" },
+  "kit-responsive":{ "mode":"iframe","src":"ui_kits/web/Responsive Web UI Kit.html","title":"Responsive web · mobile 390 + tablet 820" },
+  "kit-social":    { "mode":"iframe","src":"ui_kits/social/Social Media UI Kit.html","title":"Social media kit" },
+  "kit-youtube":   { "mode":"iframe","src":"ui_kits/youtube/YouTube UI Kit.html",    "title":"YouTube kit" },
+  "kit-email":     { "mode":"iframe","src":"ui_kits/email/Email UI Kit.html",        "title":"Email kit" },
+  "kit-ads":       { "mode":"iframe","src":"ui_kits/ads/Ads UI Kit.html",            "title":"Ads kit" },
+  "spec-motion":   { "mode":"css",   "src":"motion.css",                  "title":"Motion · motion.css" },
+  "spec-a11y":     { "mode":"md",    "src":"accessibility_spec.md",       "title":"Accessibility spec" },
+  "spec-photo":    { "mode":"md",    "src":"photography_and_video_2026.md","title":"Photography &amp; video · 2026 addendum" }
+}
+</script>
+
+<script>
+const MAP = JSON.parse(document.getElementById('content-map').textContent);
+const stage = document.getElementById('stage');
+const navEl = document.getElementById('nav');
+
+function setActive(key){
+  [...navEl.querySelectorAll('a')].forEach(a=>a.classList.toggle('on', a.dataset.k===key));
+  localStorage.setItem('hm-ds-key', key);
+}
+
+function topbar(title, meta, extra){
+  return `<div class="topbar">
+    <div class="title">${title}</div>
+    <div class="right">
+      <div class="meta">${meta||''}</div>
+      ${extra||''}
+    </div>
+  </div>`;
+}
+
+async function fetchText(url){
+  const r = await fetch(url);
+  return r.text();
+}
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Very small markdown renderer — headings, paragraphs, lists, bold/italic, code, tables.
+function mdToHtml(md){
+  md = md.replace(/\r\n/g,'\n');
+  const lines = md.split('\n');
+  let out=[], i=0;
+  const inline = s => s
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*]+)\*/g,'$1<em>$2</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  while(i<lines.length){
+    const ln = lines[i];
+    if(/^###\s/.test(ln)){ out.push('<h3>'+inline(ln.replace(/^###\s/,''))+'</h3>'); i++; continue; }
+    if(/^##\s/.test(ln)){ out.push('<h2>'+inline(ln.replace(/^##\s/,''))+'</h2>'); i++; continue; }
+    if(/^#\s/.test(ln)){ out.push('<h1>'+inline(ln.replace(/^#\s/,''))+'</h1>'); i++; continue; }
+    if(/^---\s*$/.test(ln)){ out.push('<hr/>'); i++; continue; }
+    if(/^>\s?/.test(ln)){ out.push('<blockquote>'+inline(ln.replace(/^>\s?/,''))+'</blockquote>'); i++; continue; }
+    // table
+    if(/^\|/.test(ln) && i+1<lines.length && /^\|[-:\s|]+\|/.test(lines[i+1])){
+      const rows=[]; rows.push(ln);
+      i+=2;
+      while(i<lines.length && /^\|/.test(lines[i])){ rows.push(lines[i]); i++; }
+      const cells = r => r.split('|').slice(1,-1).map(c=>inline(c.trim()));
+      const head = cells(rows[0]);
+      const body = rows.slice(1).map(cells);
+      out.push('<table><thead><tr>'+head.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+body.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table>');
+      continue;
+    }
+    // list
+    if(/^[-*]\s/.test(ln)){
+      const items=[];
+      while(i<lines.length && /^[-*]\s/.test(lines[i])){ items.push('<li>'+inline(lines[i].replace(/^[-*]\s/,''))+'</li>'); i++; }
+      out.push('<ul>'+items.join('')+'</ul>'); continue;
+    }
+    if(/^\d+\.\s/.test(ln)){
+      const items=[];
+      while(i<lines.length && /^\d+\.\s/.test(lines[i])){ items.push('<li>'+inline(lines[i].replace(/^\d+\.\s/,''))+'</li>'); i++; }
+      out.push('<ol>'+items.join('')+'</ol>'); continue;
+    }
+    if(!ln.trim()){ i++; continue; }
+    // paragraph
+    const p=[]; while(i<lines.length && lines[i].trim() && !/^(#|>|-|\*|\d+\.|\||---)/.test(lines[i])){ p.push(lines[i]); i++; }
+    out.push('<p>'+inline(p.join(' '))+'</p>');
+  }
+  return out.join('\n');
+}
+
+async function render(key){
+  const cfg = MAP[key]; if(!cfg) return;
+  setActive(key);
+
+  if(cfg.mode==='cover'){
+    stage.innerHTML = renderCover();
+    stage.querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>render(t.dataset.k)));
+    return;
+  }
+
+  if(cfg.mode==='iframe'){
+    stage.innerHTML = topbar(cfg.title, 'Live preview')
+      + `<iframe src="${cfg.src}" style="position:absolute;inset:46px 0 0 0;width:100%;height:calc(100% - 46px);" loading="lazy"></iframe>`;
+    return;
+  }
+
+  if(cfg.mode==='cards'){
+    stage.innerHTML = topbar(cfg.title, cfg.cards.length+' card'+(cfg.cards.length>1?'s':''));
+    const wrap = document.createElement('div');
+    wrap.className='scroll-wrap';
+    wrap.style.cssText='position:absolute;inset:46px 0 0 0;overflow:auto;padding:28px;background:#DED5CD;display:flex;flex-direction:column;gap:24px;';
+    for(const path of cfg.cards){
+      const f=document.createElement('iframe');
+      f.src=path;
+      f.style.cssText='width:100%;border:0;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);display:block;';
+      f.setAttribute('loading','lazy');
+      // infer height from filename pattern — defaults
+      f.style.height = path.includes('_colors_') ? '820px'
+                    : path.includes('_type_') ? '720px'
+                    : path.includes('_icons') ? '900px'
+                    : path.includes('_logos') ? '620px'
+                    : path.includes('_illustrations') ? '520px'
+                    : path.includes('_pattern') ? '520px'
+                    : '700px';
+      wrap.appendChild(f);
+    }
+    stage.appendChild(wrap);
+    return;
+  }
+
+  if(cfg.mode==='md'){
+    const src = await fetchText(cfg.src);
+    stage.innerHTML = topbar(cfg.title, cfg.src);
+    const wrap=document.createElement('div');
+    wrap.style.cssText='position:absolute;inset:46px 0 0 0;overflow:auto;background:#FAF6F2;color:var(--hm-ink);';
+    wrap.innerHTML = `<div style="max-width:780px;margin:0 auto;padding:48px 40px 80px;font-family:var(--font-sans);font-size:15px;line-height:1.7;color:var(--hm-ink-soft);">
+      <style>
+        .mdbody h1{font-family:var(--font-display);font-weight:400;font-size:52px;letter-spacing:-.02em;line-height:1.05;color:var(--hm-ink);margin:0 0 18px;}
+        .mdbody h2{font-family:var(--font-display);font-weight:400;font-size:32px;letter-spacing:-.015em;color:var(--hm-ink);margin:48px 0 14px;padding-top:14px;border-top:1px solid rgba(26,26,26,.1);}
+        .mdbody h3{font-family:var(--font-sans);font-weight:600;font-size:17px;color:var(--hm-ink);margin:28px 0 10px;letter-spacing:.01em;}
+        .mdbody p{margin:0 0 14px;}
+        .mdbody ul,.mdbody ol{margin:0 0 16px 22px;padding:0;}
+        .mdbody li{margin:6px 0;}
+        .mdbody code{font-family:var(--font-mono);font-size:13px;background:rgba(26,26,26,.06);padding:1px 5px;border-radius:2px;}
+        .mdbody a{color:var(--hm-ink);text-decoration:underline;}
+        .mdbody blockquote{border-left:3px solid var(--hm-ink);padding:4px 14px;margin:18px 0;color:var(--hm-ink-muted);font-style:italic;}
+        .mdbody table{border-collapse:collapse;width:100%;margin:18px 0;font-size:13px;}
+        .mdbody th{text-align:left;padding:9px 10px;border-bottom:1.5px solid var(--hm-ink);font-family:var(--font-mono);font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;}
+        .mdbody td{padding:9px 10px;border-bottom:1px solid rgba(26,26,26,.08);vertical-align:top;}
+        .mdbody hr{border:0;border-top:1px solid rgba(26,26,26,.15);margin:40px 0;}
+        .mdbody em{font-family:var(--font-serif-italic);font-style:italic;}
+        .mdbody strong{color:var(--hm-ink);font-weight:600;}
+      </style>
+      <div class="mdbody">${mdToHtml(src)}</div>
+    </div>`;
+    stage.appendChild(wrap);
+    return;
+  }
+
+  if(cfg.mode==='css'){
+    const src = await fetchText(cfg.src);
+    stage.innerHTML = topbar(cfg.title, cfg.src);
+    const wrap=document.createElement('div');
+    wrap.style.cssText='position:absolute;inset:46px 0 0 0;overflow:auto;background:#0E0E0E;color:#e8e4df;padding:28px;';
+    wrap.innerHTML = `<pre style="font-family:var(--font-mono);font-size:12.5px;line-height:1.65;white-space:pre-wrap;margin:0;max-width:900px;">${escapeHtml(src)}</pre>`;
+    stage.appendChild(wrap);
+    return;
+  }
+}
+
+function renderCover(){
+  return `<div class="cover">
+    <img class="seal" src="assets/logo/seal_black.png"/>
+    <div class="k">HairMNL · Design System · v2026.1</div>
+    <h2>Every <em>surface</em>,<br/>one vocabulary.</h2>
+    <p>Eight channel kits, twenty-seven component cards, motion and accessibility specs — all stitched to the 2020 Serious Studio rebrand. Click anything on the left, or jump in here.</p>
+    <div class="grid">
+      <div class="tile" data-k="readme"><div class="no">01 · START</div><div class="nm">Brand context</div><div class="ds">Voice, foundations, iconography, 2026 channel map.</div></div>
+      <div class="tile" data-k="prev-colors"><div class="no">02 · TOKENS</div><div class="nm">Tokens &amp; cards</div><div class="ds">Colour, type, spacing, components — 27 cards.</div></div>
+      <div class="tile" data-k="kit-web"><div class="no">03 · SURFACES</div><div class="nm">Channel kits</div><div class="ds">Web, responsive, social, YouTube, email, ads.</div></div>
+      <div class="tile" data-k="spec-a11y"><div class="no">04 · SPECS</div><div class="nm">Specifications</div><div class="ds">Motion, accessibility, photography &amp; video.</div></div>
+    </div>
+    <img class="stamp" src="assets/patterns/hair_strands.png"/>
+  </div>`;
+}
+
+navEl.addEventListener('click', (e)=>{
+  const a = e.target.closest('a[data-k]');
+  if(!a) return;
+  e.preventDefault();
+  render(a.dataset.k);
+});
+
+// init
+const saved = localStorage.getItem('hm-ds-key');
+render((saved && MAP[saved]) ? saved : 'cover');
+</script>
+
+</body></html>

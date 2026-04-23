@@ -1,0 +1,265 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><title>HairMNL · Email UI Kit</title>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+html,body{margin:0;padding:0;background:#DED5CD;font-family:var(--font-sans);color:var(--hm-ink);}
+body{padding:48px 24px 80px;}
+.legend{max-width:1400px;margin:0 auto 36px;}
+.legend .kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:8px;}
+.legend h1{font-family:var(--font-display);font-size:48px;font-weight:400;letter-spacing:-.015em;margin:0 0 12px;}
+.legend p{max-width:640px;color:var(--hm-ink-soft);font-size:15px;line-height:1.55;}
+
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1400px;margin:0 auto;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.lbl{display:flex;justify-content:space-between;align-items:baseline;padding:0 4px;}
+.lbl .n{font-family:var(--font-sans);font-weight:500;font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+.lbl .sub{font-family:var(--font-mono);font-size:10px;color:var(--hm-ink-muted);letter-spacing:.06em;}
+
+.email{background:#fff;width:100%;overflow:hidden;box-shadow:0 6px 28px rgba(26,26,26,.08);border:1px solid rgba(26,26,26,.06);}
+
+/* Email inbox preview header */
+.inbox{background:#F3EEE7;padding:12px 14px;border-bottom:1px solid rgba(26,26,26,.06);}
+.inbox .from{font-family:var(--font-sans);font-weight:700;font-size:12px;}
+.inbox .subj{font-family:var(--font-sans);font-size:12.5px;color:var(--hm-ink);margin-top:3px;}
+.inbox .pre{font-family:var(--font-sans);font-size:11.5px;color:var(--hm-ink-muted);margin-top:2px;line-height:1.4;}
+
+/* Email body */
+.mhead{padding:18px 22px;border-bottom:1px solid rgba(26,26,26,.1);display:flex;align-items:center;justify-content:space-between;}
+.mhead .logo img{height:16px;}
+.mhead .util{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--hm-ink-muted);}
+
+.mhero{padding:40px 28px;position:relative;}
+.mhero.paper{background:var(--hm-paper);}
+.mhero.blush{background:var(--hm-blush);}
+.mhero.ink{background:var(--hm-ink);color:var(--hm-paper);}
+.mhero.stone{background:var(--hm-stone);}
+.mhero .eb{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;}
+.mhero.ink .eb{color:rgba(250,246,242,.6);}
+.mhero:not(.ink) .eb{color:var(--hm-ink-muted);}
+.mhero h2{font-family:var(--font-display);font-weight:400;letter-spacing:-.02em;line-height:.98;margin:0 0 14px;}
+.mhero em{font-family:var(--font-serif-italic);font-style:italic;font-weight:400;}
+.mhero p{font-size:13.5px;line-height:1.6;margin:0 0 20px;}
+.mhero.ink p{color:rgba(250,246,242,.78);}
+.mhero:not(.ink) p{color:var(--hm-ink-soft);}
+
+.btn{display:inline-block;font-family:var(--font-sans);font-weight:500;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;padding:13px 22px;text-decoration:none;border:1px solid var(--hm-ink);color:var(--hm-ink);}
+.btn.solid{background:var(--hm-ink);color:var(--hm-paper);}
+.btn.invert{background:var(--hm-paper);color:var(--hm-ink);border-color:var(--hm-paper);}
+
+.mimg{position:relative;overflow:hidden;aspect-ratio:4/3;}
+.mimg.warm{background:linear-gradient(135deg,#C9B9A8 0%,#E7D8C3 60%,#EFE6E3 100%);}
+.mimg.cool{background:linear-gradient(135deg,#C2B9C6 0%,#DDD3E0 55%,#EAE3ED 100%);}
+.mimg .g{position:absolute;inset:0;background:url('../../assets/patterns/hair_strands.png') center/cover;opacity:.16;mix-blend-mode:multiply;}
+.mimg .l{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:96px;color:rgba(26,26,26,.16);}
+
+.mbody{padding:28px 28px;}
+.mbody h3{font-family:var(--font-display);font-weight:400;font-size:22px;letter-spacing:-.015em;margin:0 0 10px;}
+.mbody p{font-size:13.5px;line-height:1.65;color:var(--hm-ink-soft);margin:0 0 14px;}
+
+.msection{padding:22px 28px;border-top:1px solid rgba(26,26,26,.08);}
+.msection .eb{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:10px;}
+.msection h4{font-family:var(--font-display);font-weight:400;font-size:20px;margin:0 0 12px;letter-spacing:-.01em;}
+
+.orderrow{display:grid;grid-template-columns:56px 1fr auto;gap:12px;padding:10px 0;border-bottom:1px solid rgba(26,26,26,.06);font-family:var(--font-sans);font-size:12px;align-items:center;}
+.orderrow:last-child{border-bottom:0;}
+.orderrow .th{width:56px;height:56px;background:var(--hm-blush);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:26px;color:rgba(26,26,26,.2);}
+.orderrow .n{font-family:var(--font-display);font-size:14px;line-height:1.2;margin-bottom:3px;}
+.orderrow .m{font-family:var(--font-mono);font-size:10.5px;color:var(--hm-ink-muted);letter-spacing:.06em;}
+.orderrow .p{font-family:var(--font-mono);font-size:12px;text-align:right;}
+
+.total{display:flex;justify-content:space-between;padding:10px 0;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;}
+.total.grand{border-top:1px solid rgba(26,26,26,.15);padding-top:14px;margin-top:4px;font-family:var(--font-display);font-size:18px;letter-spacing:-.01em;}
+
+.prodgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.prodcard{background:var(--hm-paper-warm);padding:10px;text-align:center;}
+.prodcard .ph{aspect-ratio:1;background:var(--hm-blush);display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.prodcard .ph span{font-family:var(--font-display);font-size:30px;color:rgba(26,26,26,.2);}
+.prodcard .b{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--hm-ink-muted);margin-bottom:3px;}
+.prodcard .t{font-family:var(--font-display);font-size:13px;line-height:1.15;margin-bottom:6px;min-height:32px;}
+.prodcard .pr{font-family:var(--font-mono);font-size:11px;}
+
+.mfoot{padding:22px 28px;background:var(--hm-paper-warm);border-top:1px solid rgba(26,26,26,.08);text-align:center;font-family:var(--font-sans);font-size:11px;color:var(--hm-ink-muted);line-height:1.7;}
+.mfoot .sm{margin-bottom:12px;display:flex;gap:14px;justify-content:center;}
+.mfoot .sm span{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;}
+.mfoot .ft{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;}
+.mfoot a{color:var(--hm-ink);text-decoration:underline;}
+
+/* progress steps for order */
+.ostep{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:16px 0 4px;}
+.ostep .s{height:2px;background:rgba(26,26,26,.15);}
+.ostep .s.on{background:var(--hm-ink);}
+.osteplbl{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--hm-ink-muted);}
+.osteplbl .on{color:var(--hm-ink);}
+
+</style>
+</head>
+<body>
+
+<div class="legend">
+  <div class="kicker">HairMNL · 2026 · Email system</div>
+  <h1>Four transactional + lifecycle templates.</h1>
+  <p>600 px column, 13.5 px body type, serif italic reserved for one phrase per headline. Ink-on-paper hero for owned moments (welcome, newsletter), warm hero for transactional (confirmation, shipping). Emoji allowed in preheaders only — never in subject headlines or body copy.</p>
+</div>
+
+<div class="row">
+
+  <!-- ======= WELCOME ======= -->
+  <div class="col">
+    <div class="lbl"><span class="n">01 · Welcome</span><span class="sub">On first sign-up</span></div>
+    <div class="email">
+      <div class="inbox">
+        <div class="from">HairMNL</div>
+        <div class="subj">Welcome — start with your hair story.</div>
+        <div class="pre">A little about you, a routine that fits. ✨ Take 60 seconds.</div>
+      </div>
+      <div class="mhead"><div class="logo"><img src="../../assets/logo/horizontal_black.png"></div><div class="util">EST · 2013</div></div>
+      <div class="mhero paper">
+        <div class="eb">Welcome</div>
+        <h2 style="font-size:40px;">Hi, <em>Marielle.</em><br/>So glad you're here.</h2>
+        <p>Your hair is keeping a record of how you treat it — and we'd like to help make that a good one. Start by telling us a little about your hair; we'll curate a routine that actually fits your Manila mornings.</p>
+        <a class="btn solid">Take the hair quiz →</a>
+      </div>
+      <div class="msection">
+        <div class="eb">While you're here</div>
+        <h4>Three places to start.</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;">
+          <div style="text-align:center;"><img src="../../assets/icons/solutions/frizz.png" style="width:56px;margin-bottom:6px;"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;">By issue</div></div>
+          <div style="text-align:center;"><img src="../../assets/icons/solutions/curls.png" style="width:56px;margin-bottom:6px;"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;">By type</div></div>
+          <div style="text-align:center;"><img src="../../assets/icons/solutions/colored.png" style="width:56px;margin-bottom:6px;"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;">By brand</div></div>
+        </div>
+      </div>
+      <div class="msection" style="text-align:center;">
+        <div class="eb">From the editors</div>
+        <h4>"Your shampoo isn't meant for daily use."</h4>
+        <p style="font-size:12.5px;color:var(--hm-ink-soft);line-height:1.6;max-width:320px;margin:0 auto 14px;">Our most-saved article from the Journal. A quick, unfussy primer on how often you <em>should</em> actually wash.</p>
+        <a class="btn">Read the journal</a>
+      </div>
+      <div class="mfoot">
+        <div class="sm"><span>Instagram</span><span>YouTube</span><span>TikTok</span></div>
+        <div class="ft">HairMNL · 29 Brixton St, Pasig City 1605</div>
+        <div class="ft" style="margin-top:4px;"><a>Unsubscribe</a> · <a>Manage preferences</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= ORDER CONFIRMATION ======= -->
+  <div class="col">
+    <div class="lbl"><span class="n">02 · Order confirmation</span><span class="sub">Transactional</span></div>
+    <div class="email">
+      <div class="inbox">
+        <div class="from">HairMNL</div>
+        <div class="subj">Order #8134 — we've got you.</div>
+        <div class="pre">Prepping your box now. Tracking lands in 24 hours.</div>
+      </div>
+      <div class="mhead"><div class="logo"><img src="../../assets/logo/horizontal_black.png"></div><div class="util">ORDER #8134</div></div>
+      <div class="mhero stone">
+        <div class="eb">Confirmed</div>
+        <h2 style="font-size:34px;">Thanks, <em>Marielle.</em><br/>We're on it.</h2>
+        <p style="margin-bottom:6px;">Estimated delivery · Thu, 25 Apr<br/>Ship-to · 11 Matalino St, QC</p>
+        <div class="ostep"><div class="s on"></div><div class="s on"></div><div class="s"></div><div class="s"></div></div>
+        <div class="osteplbl"><span class="on">Placed</span><span class="on">Prepping</span><span>Shipped</span><span>Delivered</span></div>
+      </div>
+      <div class="msection">
+        <div class="eb">In your box</div>
+        <div class="orderrow"><div class="th">K</div><div><div class="n">Kérastase Résistance Bain</div><div class="m">250 ml · QTY 1</div></div><div class="p">P 1,800</div></div>
+        <div class="orderrow"><div class="th">D</div><div><div class="n">Davines OI All-In-One Milk</div><div class="m">135 ml · QTY 1</div></div><div class="p">P 1,575</div></div>
+        <div class="orderrow"><div class="th">O</div><div><div class="n">Olaplex No. 6 Smoother</div><div class="m">100 ml · QTY 1</div></div><div class="p">P 1,475</div></div>
+      </div>
+      <div class="msection" style="padding-top:12px;padding-bottom:12px;">
+        <div class="total"><span>Subtotal</span><span>P 4,850</span></div>
+        <div class="total"><span>TOUSLED loyalty · −5%</span><span>−P 242</span></div>
+        <div class="total"><span>Shipping · MNL</span><span>Free</span></div>
+        <div class="total grand"><span>Total</span><span>P 4,608</span></div>
+      </div>
+      <div class="msection" style="text-align:center;">
+        <a class="btn solid">Track this order</a>
+        <p style="font-size:12px;color:var(--hm-ink-muted);margin-top:16px;">Questions? Reply to this email or <a>message us</a> — real humans, 9–6 PHT.</p>
+      </div>
+      <div class="mfoot"><div class="ft">HairMNL · 29 Brixton St, Pasig 1605 · +63 2 8654 1234</div></div>
+    </div>
+  </div>
+
+  <!-- ======= NEWSLETTER ======= -->
+  <div class="col">
+    <div class="lbl"><span class="n">03 · Newsletter</span><span class="sub">Monthly · "The Brief"</span></div>
+    <div class="email">
+      <div class="inbox">
+        <div class="from">HairMNL · The Brief</div>
+        <div class="subj">April: humidity has opinions.</div>
+        <div class="pre">Five routines our editors are testing · new at Backbar 🧴</div>
+      </div>
+      <div class="mhead"><div class="logo"><img src="../../assets/logo/horizontal_black.png"></div><div class="util">ISSUE · 027</div></div>
+      <div class="mimg warm"><div class="g"></div><div class="l">04</div></div>
+      <div class="mhero paper" style="padding:28px;">
+        <div class="eb">The Brief · April 2026</div>
+        <h2 style="font-size:32px;">Humidity <em>has<br/>opinions.</em></h2>
+        <p>The air in Manila right now is 82% water. Your cuticle knows. Here's what our editors are reaching for, what our stylists are decanting, and what's dropping at Backbar this week.</p>
+      </div>
+      <div class="msection">
+        <div class="eb">Editors' edit</div>
+        <h4>Three bottles doing the heavy lifting.</h4>
+        <div class="prodgrid" style="margin-top:10px;">
+          <div class="prodcard"><div class="ph"><span>D</span></div><div class="b">Davines</div><div class="t">OI All-In-One Milk</div><div class="pr">P 1,575</div></div>
+          <div class="prodcard"><div class="ph"><span>O</span></div><div class="b">Olaplex</div><div class="t">No. 6 Bond Smoother</div><div class="pr">P 1,475</div></div>
+        </div>
+      </div>
+      <div class="msection">
+        <div class="eb">From the Journal</div>
+        <h4>Eight signs your hair is over-cleansed.</h4>
+        <p>Tight scalp, dull mids, and that strange dryness that no mask can fix. If three of these sound familiar, the issue isn't the mask — it's the shampoo, and how often you're reaching for it.</p>
+        <a class="btn">Read · 4 min</a>
+      </div>
+      <div class="msection" style="background:var(--hm-ink);color:var(--hm-paper);">
+        <div class="eb" style="color:rgba(250,246,242,.6);">Studio</div>
+        <h4 style="color:var(--hm-paper);">May bookings · now open.</h4>
+        <p style="color:rgba(250,246,242,.78);font-size:13px;">Marielle and Joaquin are taking new clients for color corrections and gloss treatments. First-visit consultations are complimentary.</p>
+        <a class="btn invert">Book at the studio</a>
+      </div>
+      <div class="mfoot">
+        <div class="sm"><span>Instagram</span><span>YouTube</span><span>TikTok</span></div>
+        <div class="ft">You're receiving The Brief because you subscribed at hairmnl.ph</div>
+        <div class="ft" style="margin-top:4px;"><a>Unsubscribe</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= ABANDONED CART ======= -->
+  <div class="col">
+    <div class="lbl"><span class="n">04 · Abandoned cart</span><span class="sub">24 hours after</span></div>
+    <div class="email">
+      <div class="inbox">
+        <div class="from">HairMNL</div>
+        <div class="subj">Your routine is waiting.</div>
+        <div class="pre">Still thinking? We'll hold these for 48 hours. 💌</div>
+      </div>
+      <div class="mhead"><div class="logo"><img src="../../assets/logo/horizontal_black.png"></div><div class="util">STILL IN YOUR BAG</div></div>
+      <div class="mhero blush">
+        <div class="eb">Hi again</div>
+        <h2 style="font-size:40px;">Your<br/>routine <em>is<br/>waiting.</em></h2>
+        <p>We saved these in your bag — three pieces that work together. We'll hold them for 48 hours before we let someone else have them.</p>
+        <a class="btn solid">Finish checkout →</a>
+      </div>
+      <div class="msection">
+        <div class="eb">Still in your bag · 3 items</div>
+        <div class="orderrow"><div class="th">K</div><div><div class="n">Kérastase Résistance Bain</div><div class="m">250 ml · for weakened ends</div></div><div class="p">P 1,800</div></div>
+        <div class="orderrow"><div class="th">D</div><div><div class="n">Davines OI Milk</div><div class="m">135 ml · multi-benefit leave-in</div></div><div class="p">P 1,575</div></div>
+        <div class="orderrow"><div class="th">O</div><div><div class="n">Olaplex No. 6</div><div class="m">100 ml · bond smoother</div></div><div class="p">P 1,475</div></div>
+      </div>
+      <div class="msection" style="background:var(--hm-sage);">
+        <div class="eb">One last nudge</div>
+        <h4>You're <em>P 760</em> from free shipping.</h4>
+        <p style="font-size:12.5px;color:var(--hm-ink-soft);">Adding a travel-size Olaplex gets you there — and gives you a backup for the gym bag.</p>
+        <a class="btn">See the add-on</a>
+      </div>
+      <div class="msection" style="text-align:center;">
+        <p style="font-size:12px;color:var(--hm-ink-muted);margin:0;">Not feeling it? <a>Clear your bag</a> — no hard feelings.</p>
+      </div>
+      <div class="mfoot"><div class="ft">HairMNL · <a>Unsubscribe from reminders</a></div></div>
+    </div>
+  </div>
+
+</div>
+
+</body></html>
