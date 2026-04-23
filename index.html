@@ -230,7 +230,9 @@ async function render(key){
         });
         // Rewrite html/body selectors to :host so the preview's base color/background/font rules apply.
         const rawStyles = [...doc.querySelectorAll('style')].map(s => s.textContent).join('\n');
-        const rewritten = rawStyles.replace(/(^|,|\})\s*(html\s*,\s*body|body\s*,\s*html|body|html)(\s*[{,])/g, '$1 :host$3');
+        const rewritten = rawStyles
+          .replace(/(^|,|\})\s*(html\s*,\s*body|body\s*,\s*html|body|html)(\s*[{,])/g, '$1 :host$3')
+          .replace(/\b(min-height|height)\s*:\s*100vh\b/gi, '$1:auto');
         const body = doc.body ? doc.body.innerHTML : html;
         host.shadowRoot.innerHTML = `<style>${hostBase}${rewritten}</style>${body}`;
       } catch (e) {
