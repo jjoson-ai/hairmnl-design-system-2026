@@ -198,33 +198,41 @@ async function render(key){
     // Build placeholder shells first so layout is stable while content streams in.
     const shells = cfg.cards.map(path => {
       const host = document.createElement('div');
-      host.style.cssText = 'width:100%;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);min-height:180px;';
+      host.style.cssText = 'width:100%;max-width:1000px;align-self:center;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);min-height:180px;';
       host.attachShadow({mode:'open'});
       wrap.appendChild(host);
       return { host, path };
     });
 
+    // Base styles injected into every shadow root — replace what the preview's
+    // html/body rules would have set. Shadow DOM ignores html/body selectors,
+    // so without this, content inherits the parent document's near-white color
+    // and becomes invisible on near-white card backgrounds.
+    const hostBase = `
+      :host { display:block; color:var(--hm-ink); background:var(--hm-paper); font-family:var(--font-sans); line-height:1.4; }
+      :host, :host *, :host *::before, :host *::after { box-sizing:border-box; }
+    `;
+
     // Fetch all cards in parallel — one document, one set of font loads.
     await Promise.all(shells.map(async ({host, path}) => {
       try {
         const html = await fetchText(path);
-        // Rewrite relative asset urls (../fonts, ../colors...) so they resolve against the preview folder.
         const base = path.substring(0, path.lastIndexOf('/') + 1);
         const doc = new DOMParser().parseFromString(html, 'text/html');
-        // Drop the file's <link rel="stylesheet"> — fonts + tokens already live on the parent document.
+        // Drop <link rel="stylesheet"> — fonts + tokens already live on the parent document and inherit in.
         doc.querySelectorAll('link[rel="stylesheet"]').forEach(l => l.remove());
-        // Rewrite any remaining relative src/href inside the body.
+        // Rewrite relative src/href inside the body so image paths resolve correctly.
         doc.querySelectorAll('[src], [href]').forEach(el => {
           for (const attr of ['src','href']) {
             const v = el.getAttribute(attr);
-            if (v && !/^(https?:|data:|\/|#)/.test(v)) {
-              el.setAttribute(attr, base + v);
-            }
+            if (v && !/^(https?:|data:|\/|#)/.test(v)) el.setAttribute(attr, base + v);
           }
         });
-        const styles = [...doc.querySelectorAll('style')].map(s => s.textContent).join('\n');
-        const body   = doc.body ? doc.body.innerHTML : html;
-        host.shadowRoot.innerHTML = `<style>:host{display:block;}${styles}</style>${body}`;
+        // Rewrite html/body selectors to :host so the preview's base color/background/font rules apply.
+        const rawStyles = [...doc.querySelectorAll('style')].map(s => s.textContent).join('\n');
+        const rewritten = rawStyles.replace(/(^|,|\})\s*(html\s*,\s*body|body\s*,\s*html|body|html)(\s*[{,])/g, '$1 :host$3');
+        const body = doc.body ? doc.body.innerHTML : html;
+        host.shadowRoot.innerHTML = `<style>${hostBase}${rewritten}</style>${body}`;
       } catch (e) {
         host.shadowRoot.innerHTML = `<div style="padding:20px;font-family:monospace;color:#900;">Failed to load ${path}</div>`;
       }
