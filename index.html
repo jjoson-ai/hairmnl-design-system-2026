@@ -201,8 +201,9 @@ function mdToHtml(md){
       out.push('<ol>'+items.join('')+'</ol>'); continue;
     }
     if(!ln.trim()){ i++; continue; }
-    // paragraph
-    const p=[]; while(i<lines.length && lines[i].trim() && !/^(#|>|-|\*|\d+\.|\||---)/.test(lines[i])){ p.push(lines[i]); i++; }
+    // paragraph — exit regex mirrors the block checks above (requires space after -, *, #)
+    const p=[]; while(i<lines.length && lines[i].trim() && !/^(#{1,3}\s|>|[-*]\s|\d+\.\s|\||---\s*$)/.test(lines[i])){ p.push(lines[i]); i++; }
+    if(p.length===0){ i++; continue; } // safety: never stall
     out.push('<p>'+inline(p.join(' '))+'</p>');
   }
   return out.join('\n');
