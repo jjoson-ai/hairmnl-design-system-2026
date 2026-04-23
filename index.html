@@ -120,7 +120,7 @@ html,body{margin:0;padding:0;height:100%;background:#1A1A1A;color:var(--hm-paper
   "prev-spacing":  { "mode":"cards", "title":"Spacing · radii · elevation","cards":["preview/20_spacing.html","preview/21_radii_elevation.html"] },
   "prev-components":{ "mode":"cards","title":"Components",              "cards":["preview/30_buttons.html","preview/31_inputs.html","preview/32_pillars.html","preview/33_product_card.html"] },
   "prev-brand":    { "mode":"cards", "title":"Brand &amp; illustration","cards":["preview/40_logos.html","preview/41_pattern.html","preview/42_solution_seals.html","preview/43_ecom_labels.html","preview/44_illustrations.html"] },
-  "prev-ext":      { "mode":"cards", "title":"Extended components (2026)","cards":["preview/50_icons.html","preview/51_badges.html","preview/52_toasts.html","preview/53_modal.html","preview/54_stepper_tabs_accordion.html","preview/55_reviews.html","preview/56_empty_skeleton.html","preview/57_filter_sticky_progress.html"] },
+  "prev-ext":      { "mode":"cards", "title":"Extended components (2026)", "maxWidth":960, "cards":["preview/50_icons.html","preview/51_badges.html","preview/52_toasts.html","preview/53_modal.html","preview/54_stepper_tabs_accordion.html","preview/55_reviews.html","preview/56_empty_skeleton.html","preview/57_filter_sticky_progress.html"] },
   "kit-web":       { "mode":"iframe","src":"ui_kits/web/Website UI Kit.html",       "title":"Website UI Kit · desktop 1440" },
   "kit-responsive":{ "mode":"iframe","src":"ui_kits/web/Responsive Web UI Kit.html","title":"Responsive web · mobile 390 + tablet 820" },
   "kit-social":    { "mode":"iframe","src":"ui_kits/social/Social Media UI Kit.html","title":"Social media kit" },
@@ -198,7 +198,7 @@ async function render(key){
     // Build placeholder shells first so layout is stable while content streams in.
     const shells = cfg.cards.map(path => {
       const host = document.createElement('div');
-      host.style.cssText = 'width:100%;max-width:720px;align-self:center;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);overflow:hidden;position:relative;';
+      host.style.cssText = `width:100%;max-width:${cfg.maxWidth||720}px;align-self:center;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);overflow:hidden;position:relative;`;
       host.attachShadow({mode:'open'});
       wrap.appendChild(host);
       return { host, path };

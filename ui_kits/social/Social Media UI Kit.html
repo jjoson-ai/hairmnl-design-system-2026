@@ -317,36 +317,36 @@ function App() {
   return (
     <DesignCanvas>
       <DCSection id="ig-post" title="Instagram · Feed post" subtitle="1080 × 1080 · 1:1 · four post formats">
-        <DCArtboard id="q" label="A · Quote" width={1080} height={1080}><IG_Quote/></DCArtboard>
-        <DCArtboard id="p" label="B · Product drop" width={1080} height={1080}><IG_Product/></DCArtboard>
-        <DCArtboard id="e" label="C · Editorial" width={1080} height={1080}><IG_Editorial/></DCArtboard>
-        <DCArtboard id="a" label="D · Announcement" width={1080} height={1080}><IG_Announcement/></DCArtboard>
+        <DCArtboard id="q" label="A · Quote" width={460} height={460} native={{w:1080,h:1080}}><IG_Quote/></DCArtboard>
+        <DCArtboard id="p" label="B · Product drop" width={460} height={460} native={{w:1080,h:1080}}><IG_Product/></DCArtboard>
+        <DCArtboard id="e" label="C · Editorial" width={460} height={460} native={{w:1080,h:1080}}><IG_Editorial/></DCArtboard>
+        <DCArtboard id="a" label="D · Announcement" width={460} height={460} native={{w:1080,h:1080}}><IG_Announcement/></DCArtboard>
       </DCSection>
 
       <DCSection id="ig-carousel" title="Instagram · Carousel" subtitle="5 cards · 1:1 · swipeable explainer">
-        <DCArtboard id="c1" label="01 · Cover" width={1080} height={1080}><Car1/></DCArtboard>
-        <DCArtboard id="c2" label="02" width={1080} height={1080}><CarN n={2} total={5} eb="Humidity 101" title={<>The <span className="serif-em">cuticle</span> is not your enemy.</>} body={"It's a shingle, not a wall. When it lifts, water escapes and frizz starts. Smoothing it down is the whole game."}/></DCArtboard>
-        <DCArtboard id="c3" label="03" width={1080} height={1080}><CarN n={3} total={5} eb="Habits" title={<>Washing <span className="serif-em">less</span> is the move.</>} body={"2–3 times a week, max. Daily shampooing strips the sebum that your scalp worked hard to balance."}/></DCArtboard>
-        <DCArtboard id="c4" label="04" width={1080} height={1080}><CarN n={4} total={5} eb="Pairings" title={<>Leave-ins are the <span className="serif-em">MVP.</span></>} body={"A humidity-blocking leave-in seals the deal. Davines OI Milk or K18 Mist are our editors' picks for April."}/></DCArtboard>
-        <DCArtboard id="c5" label="05 · CTA" width={1080} height={1080}><CarEnd/></DCArtboard>
+        <DCArtboard id="c1" label="01 · Cover" width={400} height={400} native={{w:1080,h:1080}}><Car1/></DCArtboard>
+        <DCArtboard id="c2" label="02" width={400} height={400} native={{w:1080,h:1080}}><CarN n={2} total={5} eb="Humidity 101" title={<>The <span className="serif-em">cuticle</span> is not your enemy.</>} body={"It's a shingle, not a wall. When it lifts, water escapes and frizz starts. Smoothing it down is the whole game."}/></DCArtboard>
+        <DCArtboard id="c3" label="03" width={400} height={400} native={{w:1080,h:1080}}><CarN n={3} total={5} eb="Habits" title={<>Washing <span className="serif-em">less</span> is the move.</>} body={"2–3 times a week, max. Daily shampooing strips the sebum that your scalp worked hard to balance."}/></DCArtboard>
+        <DCArtboard id="c4" label="04" width={400} height={400} native={{w:1080,h:1080}}><CarN n={4} total={5} eb="Pairings" title={<>Leave-ins are the <span className="serif-em">MVP.</span></>} body={"A humidity-blocking leave-in seals the deal. Davines OI Milk or K18 Mist are our editors' picks for April."}/></DCArtboard>
+        <DCArtboard id="c5" label="05 · CTA" width={400} height={400} native={{w:1080,h:1080}}><CarEnd/></DCArtboard>
       </DCSection>
 
       <DCSection id="story" title="Instagram Stories & Reels" subtitle="1080 × 1920 · 9:16 · five formats">
-        <DCArtboard id="s1" label="Quote story" width={540} height={960} native={{w:1080,h:1920}}><Story_Quote/></DCArtboard>
-        <DCArtboard id="s2" label="Poll sticker" width={540} height={960} native={{w:1080,h:1920}}><Story_Poll/></DCArtboard>
-        <DCArtboard id="s3" label="Reel cover" width={540} height={960} native={{w:1080,h:1920}}><Reel_Cover/></DCArtboard>
-        <DCArtboard id="s4" label="Product swipe-up" width={540} height={960} native={{w:1080,h:1920}}><Story_Product/></DCArtboard>
-        <DCArtboard id="s5" label="TikTok cover" width={540} height={960} native={{w:1080,h:1920}}><TT_Cover/></DCArtboard>
+        <DCArtboard id="s1" label="Quote story" width={320} height={569} native={{w:1080,h:1920}}><Story_Quote/></DCArtboard>
+        <DCArtboard id="s2" label="Poll sticker" width={320} height={569} native={{w:1080,h:1920}}><Story_Poll/></DCArtboard>
+        <DCArtboard id="s3" label="Reel cover" width={320} height={569} native={{w:1080,h:1920}}><Reel_Cover/></DCArtboard>
+        <DCArtboard id="s4" label="Product swipe-up" width={320} height={569} native={{w:1080,h:1920}}><Story_Product/></DCArtboard>
+        <DCArtboard id="s5" label="TikTok cover" width={320} height={569} native={{w:1080,h:1920}}><TT_Cover/></DCArtboard>
       </DCSection>
 
       <DCSection id="pin" title="Pinterest" subtitle="1000 × 1500 · 2:3">
-        <DCArtboard id="p1" label="Routine pin · text-first" width={500} height={750} native={{w:1000,h:1500}}><Pin_A/></DCArtboard>
-        <DCArtboard id="p2" label="Journal pin · image-first" width={500} height={750} native={{w:1000,h:1500}}><Pin_B/></DCArtboard>
+        <DCArtboard id="p1" label="Routine pin · text-first" width={320} height={480} native={{w:1000,h:1500}}><Pin_A/></DCArtboard>
+        <DCArtboard id="p2" label="Journal pin · image-first" width={320} height={480} native={{w:1000,h:1500}}><Pin_B/></DCArtboard>
       </DCSection>
 
       <DCSection id="avatar" title="Profile avatars" subtitle="400 × 400 · IG / TikTok / Pinterest · use the seal, never the wordmark">
-        <DCArtboard id="av1" label="Light" width={400} height={400}><Avatar_Light/></DCArtboard>
-        <DCArtboard id="av2" label="Dark" width={400} height={400}><Avatar_Dark/></DCArtboard>
+        <DCArtboard id="av1" label="Light" width={220} height={220} native={{w:400,h:400}}><Avatar_Light/></DCArtboard>
+        <DCArtboard id="av2" label="Dark" width={220} height={220} native={{w:400,h:400}}><Avatar_Dark/></DCArtboard>
       </DCSection>
 
       <DCSection id="rules" title="Rules of thumb" subtitle="So channel posts still read as HairMNL from a thumbnail">
