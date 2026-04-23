@@ -28,7 +28,7 @@ html,body{margin:0;padding:0;background:#EAE4DA;font-family:var(--font-sans);col
 .cta.invert{background:var(--hm-paper);color:var(--hm-ink);}
 .cta.outline{background:transparent;color:var(--hm-ink);border:1px solid var(--hm-ink);}
 
-.logo img{height:12px;}
+.logo img{height:12px;width:auto;max-width:100%;display:block;}
 .logo.paper img{filter:invert(1);}
 .seal img{height:26px;}
 .seal.paper img{filter:invert(1);}
@@ -48,31 +48,31 @@ const { DesignCanvas, DCSection, DCArtboard, DCPostIt } = window;
 
 /* ============ DISPLAY · Leaderboard 728×90 ============ */
 const Leaderboard = () => (
-  <div className="stage bg-paper" style={{display:'grid', gridTemplateColumns:'90px 1fr 120px', alignItems:'center', padding:'0 18px', gap:16}}>
-    <div style={{width:62, height:62, background:'linear-gradient(135deg,#C9B9A8,#E7D8C3)', position:'relative', overflow:'hidden'}}>
+  <div className="stage bg-paper" style={{display:'grid', gridTemplateColumns:'68px 1fr auto', alignItems:'center', padding:'0 16px', gap:14}}>
+    <div style={{width:56, height:56, background:'linear-gradient(135deg,#C9B9A8,#E7D8C3)', position:'relative', overflow:'hidden'}}>
       <div className="grain"/>
-      <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:40, color:'rgba(26,26,26,.2)'}}>K</div>
+      <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:30, color:'rgba(26,26,26,.2)'}}>K</div>
     </div>
-    <div>
-      <div className="eb" style={{fontSize:9, color:'var(--hm-ink-muted)', marginBottom:4}}>Kérastase · now 20% off</div>
-      <div className="dp" style={{fontSize:22}}>Humidity isn't the enemy. <span className="si">Under-nourished cuticles</span> are.</div>
+    <div style={{minWidth:0}}>
+      <div className="eb" style={{fontSize:8.5, color:'var(--hm-ink-muted)', marginBottom:2}}>Kérastase · now 20% off</div>
+      <div className="dp" style={{fontSize:17, lineHeight:1.05, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>Humidity isn't the <span className="si">enemy.</span></div>
     </div>
-    <div style={{textAlign:'right'}}>
-      <div className="cta" style={{padding:'9px 14px', fontSize:9, letterSpacing:'.18em', textTransform:'uppercase'}}>Shop now →</div>
-      <div className="logo" style={{marginTop:6}}><img src="../../assets/logo/horizontal_black.png"/></div>
+    <div style={{display:'flex', alignItems:'center', gap:12, flexShrink:0}}>
+      <div className="cta" style={{padding:'8px 12px', fontSize:9, letterSpacing:'.16em', textTransform:'uppercase'}}>Shop now</div>
+      <div className="logo" style={{lineHeight:0}}><img src="../../assets/logo/horizontal_black.png" style={{height:11, width:'auto', display:'block'}}/></div>
     </div>
   </div>
 );
 
 const LeaderboardB = () => (
-  <div className="stage bg-ink" style={{display:'grid', gridTemplateColumns:'1fr auto', alignItems:'center', padding:'0 22px', gap:16, color:'var(--hm-paper)'}}>
-    <div>
-      <div className="eb" style={{fontSize:9, color:'rgba(250,246,242,.6)', marginBottom:4}}>Semi-annual sale · Live now</div>
-      <div className="dp" style={{fontSize:24, color:'var(--hm-paper)'}}>Take <span className="si">25% off</span> our entire shelf. No code needed.</div>
+  <div className="stage bg-ink" style={{display:'grid', gridTemplateColumns:'1fr auto', alignItems:'center', padding:'0 20px', gap:14, color:'var(--hm-paper)'}}>
+    <div style={{minWidth:0}}>
+      <div className="eb" style={{fontSize:8.5, color:'rgba(250,246,242,.6)', marginBottom:2}}>Semi-annual sale · Live now</div>
+      <div className="dp" style={{fontSize:19, lineHeight:1.05, color:'var(--hm-paper)', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>Take <span className="si">25% off</span> our entire shelf.</div>
     </div>
-    <div style={{display:'flex', alignItems:'center', gap:14}}>
-      <div className="cta invert" style={{padding:'10px 16px', fontSize:9, letterSpacing:'.18em', textTransform:'uppercase'}}>Shop the sale</div>
-      <div className="logo paper"><img src="../../assets/logo/horizontal_white.png"/></div>
+    <div style={{display:'flex', alignItems:'center', gap:12, flexShrink:0}}>
+      <div className="cta invert" style={{padding:'8px 12px', fontSize:9, letterSpacing:'.16em', textTransform:'uppercase'}}>Shop the sale</div>
+      <div className="logo paper" style={{lineHeight:0}}><img src="../../assets/logo/horizontal_white.png" style={{height:11, width:'auto', display:'block'}}/></div>
     </div>
   </div>
 );
@@ -105,16 +105,16 @@ const MedRectB = () => (
 
 /* ============ DISPLAY · Skyscraper 160×600 ============ */
 const Sky = () => (
-  <div className="stage bg-paper" style={{padding:'18px 14px', display:'flex', flexDirection:'column'}}>
-    <div className="logo" style={{marginBottom:18}}><img src="../../assets/logo/horizontal_black.png"/></div>
-    <div className="eb" style={{fontSize:8.5, color:'var(--hm-ink-muted)', marginBottom:8}}>Hair notebook</div>
-    <div className="dp" style={{fontSize:22, color:'var(--hm-ink)'}}>Your hair<br/>is keeping<br/><span className="si">a record.</span></div>
-    <div style={{width:'100%', aspectRatio:'3/4', background:'linear-gradient(135deg,#C9B9A8,#EFE6E3)', margin:'18px 0', position:'relative', overflow:'hidden'}}>
+  <div className="stage bg-paper" style={{padding:'16px 12px', display:'flex', flexDirection:'column'}}>
+    <div className="logo" style={{marginBottom:14}}><img src="../../assets/logo/horizontal_black.png" style={{height:10}}/></div>
+    <div className="eb" style={{fontSize:8, color:'var(--hm-ink-muted)', marginBottom:6}}>Hair notebook</div>
+    <div className="dp" style={{fontSize:19, color:'var(--hm-ink)', lineHeight:1.02}}>Your hair<br/>keeps <span className="si">a record.</span></div>
+    <div style={{width:'100%', aspectRatio:'3/4', background:'linear-gradient(135deg,#C9B9A8,#EFE6E3)', margin:'14px 0', position:'relative', overflow:'hidden'}}>
       <div className="grain"/>
-      <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:70, color:'rgba(26,26,26,.18)'}}>H</div>
+      <div style={{position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontSize:56, color:'rgba(26,26,26,.18)'}}>H</div>
     </div>
-    <div style={{fontSize:10, color:'var(--hm-ink-soft)', lineHeight:1.5, marginBottom:12}}>Take the 60-second quiz — we'll curate a routine for your hair and Manila mornings.</div>
-    <div className="cta" style={{padding:'9px 10px', fontSize:9, letterSpacing:'.18em', textTransform:'uppercase', textAlign:'center', marginTop:'auto'}}>Start the quiz</div>
+    <div style={{fontSize:9.5, color:'var(--hm-ink-soft)', lineHeight:1.45, marginBottom:10}}>A 60-sec quiz · a routine for Manila mornings.</div>
+    <div className="cta" style={{padding:'8px 8px', fontSize:8.5, letterSpacing:'.16em', textTransform:'uppercase', textAlign:'center', marginTop:'auto'}}>Start the quiz</div>
   </div>
 );
 
