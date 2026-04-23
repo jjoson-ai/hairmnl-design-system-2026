@@ -363,7 +363,9 @@ function DCSection({ id, title, subtitle, children, gap = 48 }) {
             onFocus={() => ctx && ctx.setFocus(`${sid}/${k}`)} />
         ))}
       </div>
-      {rest}
+      {rest.length > 0 && (
+        <div style={{ position: 'relative', padding: '24px 60px 8px', minHeight: 280 }}>{rest}</div>
+      )}
     </div>
   );
 }
@@ -372,9 +374,15 @@ function DCSection({ id, title, subtitle, children, gap = 48 }) {
 function DCArtboard() { return null; }
 
 function DCArtboardFrame({ sectionId, artboard, label, order, onRename, onReorder, onFocus }) {
-  const { id: rawId, label: rawLabel, width = 260, height = 480, children, style = {} } = artboard.props;
+  const { id: rawId, label: rawLabel, width = 260, height = 480, native, children, style = {} } = artboard.props;
   const id = rawId ?? rawLabel;
   const ref = React.useRef(null);
+  // `native` lets content be authored at the real pixel dimensions (e.g. 1280×720 YouTube thumb)
+  // while the artboard shows a scaled preview. Avoids the designer having to translate every font
+  // size and offset into artboard-space.
+  const scaled = native && (native.w || native.h)
+    ? { w: native.w || width, h: native.h || height }
+    : null;
 
   // Live drag-reorder: dragged card sticks to cursor; siblings slide into
   // their would-be slots in real time via transforms. DOM order only
@@ -454,7 +462,11 @@ function DCArtboardFrame({ sectionId, artboard, label, order, onRename, onReorde
       </button>
       <div className="dc-card"
         style={{ borderRadius: 2, boxShadow: '0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06)', overflow: 'hidden', width, height, background: '#fff', ...style }}>
-        {children || <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bbb', fontSize: 13, fontFamily: DC.font }}>{id}</div>}
+        {scaled ? (
+          <div style={{ width: scaled.w, height: scaled.h, transform: `scale(${Math.min(width / scaled.w, height / scaled.h)})`, transformOrigin: 'top left' }}>
+            {children}
+          </div>
+        ) : (children || <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bbb', fontSize: 13, fontFamily: DC.font }}>{id}</div>)}
       </div>
     </div>
   );
@@ -505,10 +517,13 @@ function DCFocusOverlay({ entry, sectionMeta, sectionOrder }) {
     return () => document.removeEventListener('keydown', k);
   });
 
-  const { width = 260, height = 480, children } = artboard.props;
+  const { width = 260, height = 480, native, children } = artboard.props;
   const [vp, setVp] = React.useState({ w: window.innerWidth, h: window.innerHeight });
   React.useEffect(() => { const r = () => setVp({ w: window.innerWidth, h: window.innerHeight }); window.addEventListener('resize', r); return () => window.removeEventListener('resize', r); }, []);
   const scale = Math.max(0.1, Math.min((vp.w - 200) / width, (vp.h - 260) / height, 2));
+  const inner = native && (native.w || native.h)
+    ? { w: native.w || width, h: native.h || height, s: Math.min(width / (native.w || width), height / (native.h || height)) }
+    : null;
 
   const [ddOpen, setDd] = React.useState(false);
   const Arrow = ({ dir, onClick }) => (
@@ -575,7 +590,9 @@ function DCFocusOverlay({ entry, sectionMeta, sectionOrder }) {
         <div onClick={(e) => e.stopPropagation()} style={{ width: width * scale, height: height * scale, position: 'relative' }}>
           <div style={{ width, height, transform: `scale(${scale})`, transformOrigin: 'top left', background: '#fff', borderRadius: 2, overflow: 'hidden',
             boxShadow: '0 20px 80px rgba(0,0,0,.4)' }}>
-            {children || <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bbb' }}>{aid}</div>}
+            {inner ? (
+              <div style={{ width: inner.w, height: inner.h, transform: `scale(${inner.s})`, transformOrigin: 'top left' }}>{children}</div>
+            ) : (children || <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bbb' }}>{aid}</div>)}
           </div>
         </div>
         <div onClick={(e) => e.stopPropagation()} style={{ fontSize: 14, fontWeight: 500, opacity: .85, textAlign: 'center' }}>
@@ -604,10 +621,13 @@ function DCFocusOverlay({ entry, sectionMeta, sectionOrder }) {
 // ─────────────────────────────────────────────────────────────
 // Post-it — absolute-positioned sticky note
 // ─────────────────────────────────────────────────────────────
-function DCPostIt({ children, top, left, right, bottom, rotate = -2, width = 180 }) {
+function DCPostIt({ children, top, left, right, bottom, x, y, rotate = -2, width = 180 }) {
+  // `x`/`y` are convenience aliases for `left`/`top` — several kits use them.
+  const resolvedLeft = left ?? x;
+  const resolvedTop = top ?? y;
   return (
     <div style={{
-      position: 'absolute', top, left, right, bottom, width,
+      position: 'absolute', top: resolvedTop, left: resolvedLeft, right, bottom, width,
       background: DC.postitBg, padding: '14px 16px',
       fontFamily: '"Comic Sans MS", "Marker Felt", "Segoe Print", cursive',
       fontSize: 14, lineHeight: 1.4, color: DC.postitText,

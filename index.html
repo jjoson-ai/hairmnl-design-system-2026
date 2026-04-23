@@ -232,7 +232,8 @@ async function render(key){
         const rawStyles = [...doc.querySelectorAll('style')].map(s => s.textContent).join('\n');
         const rewritten = rawStyles
           .replace(/(^|,|\})\s*(html\s*,\s*body|body\s*,\s*html|body|html)(\s*[{,])/g, '$1 :host$3')
-          .replace(/\b(min-height|height)\s*:\s*100vh\b/gi, '$1:auto');
+          .replace(/\b(min-height|height)\s*:\s*100vh\b/gi, '$1:auto')
+          .replace(/position\s*:\s*fixed\b/gi, 'position:absolute');
         const body = doc.body ? doc.body.innerHTML : html;
         host.shadowRoot.innerHTML = `<style>${hostBase}${rewritten}</style>${body}`;
       } catch (e) {
