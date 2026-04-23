@@ -229,22 +229,42 @@ async function render(key){
     const wrap = document.createElement('div');
     wrap.className='scroll-wrap';
     wrap.style.cssText='position:absolute;inset:46px 0 0 0;overflow:auto;padding:28px;background:#DED5CD;display:flex;flex-direction:column;gap:24px;';
-    for(const path of cfg.cards){
-      const f=document.createElement('iframe');
-      f.src=path;
-      f.style.cssText='width:100%;border:0;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);display:block;';
-      f.setAttribute('loading','lazy');
-      // infer height from filename pattern — defaults
-      f.style.height = path.includes('_colors_') ? '820px'
-                    : path.includes('_type_') ? '720px'
-                    : path.includes('_icons') ? '900px'
-                    : path.includes('_logos') ? '620px'
-                    : path.includes('_illustrations') ? '520px'
-                    : path.includes('_pattern') ? '520px'
-                    : '700px';
-      wrap.appendChild(f);
-    }
     stage.appendChild(wrap);
+
+    // Build placeholder shells first so layout is stable while content streams in.
+    const shells = cfg.cards.map(path => {
+      const host = document.createElement('div');
+      host.style.cssText = 'width:100%;background:#FAF6F2;box-shadow:0 10px 40px rgba(0,0,0,.15);min-height:180px;';
+      host.attachShadow({mode:'open'});
+      wrap.appendChild(host);
+      return { host, path };
+    });
+
+    // Fetch all cards in parallel — one document, one set of font loads.
+    await Promise.all(shells.map(async ({host, path}) => {
+      try {
+        const html = await fetchText(path);
+        // Rewrite relative asset urls (../fonts, ../colors...) so they resolve against the preview folder.
+        const base = path.substring(0, path.lastIndexOf('/') + 1);
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        // Drop the file's <link rel="stylesheet"> — fonts + tokens already live on the parent document.
+        doc.querySelectorAll('link[rel="stylesheet"]').forEach(l => l.remove());
+        // Rewrite any remaining relative src/href inside the body.
+        doc.querySelectorAll('[src], [href]').forEach(el => {
+          for (const attr of ['src','href']) {
+            const v = el.getAttribute(attr);
+            if (v && !/^(https?:|data:|\/|#)/.test(v)) {
+              el.setAttribute(attr, base + v);
+            }
+          }
+        });
+        const styles = [...doc.querySelectorAll('style')].map(s => s.textContent).join('\n');
+        const body   = doc.body ? doc.body.innerHTML : html;
+        host.shadowRoot.innerHTML = `<style>:host{display:block;}${styles}</style>${body}`;
+      } catch (e) {
+        host.shadowRoot.innerHTML = `<div style="padding:20px;font-family:monospace;color:#900;">Failed to load ${path}</div>`;
+      }
+    }));
     return;
   }
 
